@@ -1,0 +1,11 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 1774390
+##  Job Name : run_script.sh
+##  Nodelist : node1129
+##      CPUs : 8
+##  Mem/Node : 10240 MB
+## Directory : /gpfs/data/idellant/dmi/red-galaxies
+##   Started : Fri Jul 16 20:57:34 EDT 2021
+###############################################################################
+module: unloading 'python/2.7.12'
+module: loading 'python/3.7.4'

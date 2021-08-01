@@ -1,0 +1,606 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 1774539
+##  Job Name : run_script.sh
+##  Nodelist : node1301
+##      CPUs : 1
+##  Mem/Node : 8192 MB
+## Directory : /gpfs/data/idellant/dmi/red-galaxies
+##   Started : Fri Jul 16 22:51:39 EDT 2021
+###############################################################################
+module: unloading 'python/2.7.12'
+module: loading 'python/3.7.4'
+Successfully obtained 225 cluster directories.
+Current directory: DATA_CALIB_template_bk_defect_bias_flat
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster DATA_CALIB_template_bk_defect_bias_flat
+Current directory: combine_fiatmap_optical_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster combine_fiatmap_optical_backup
+Current directory: A3911_outputs
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_outputs
+Current directory: A2811_ps1_jointcal2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_ps1_jointcal2
+Current directory: A3911_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_check
+Current directory: A3911
+Trying: read_merge_full_catalog
+Current catalogue../../Clusters/A3911/read_merge_full_catalog/merge_5to6_g.csv
+Current catalogue../../Clusters/A3911/read_merge_full_catalog/merge_5to6_r.csv
+Current catalogue../../Clusters/A3911/read_merge_full_catalog/merge_3to8_r.csv
+Current catalogue../../Clusters/A3911/read_merge_full_catalog/merge_3to8_g.csv
+Current catalogue../../Clusters/A3911/read_merge_full_catalog/merge_0to11_g.csv
+Current catalogue../../Clusters/A3911/read_merge_full_catalog/merge_0to11_r.csv
+Current directory: A2941_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2941_check
+Current directory: A3667_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3667_check2
+Current directory: SDSS-C41209
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster SDSS-C41209
+Current directory: A3695
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3695
+Current directory: A754_scratch
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A754_scratch
+Current directory: A2811
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A2811/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/A2811/read_merge_full_catalog_output/merge_g.csv
+Current directory: A3921_check3_bk
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_check3_bk
+Current directory: mastercal_database_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mastercal_database_backup
+Current directory: A1606_old
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1606_old
+Current directory: read_merge_full_catalog_test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster read_merge_full_catalog_test
+Current directory: A3695_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3695_check2
+Current directory: A3667
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3667
+Current directory: photo_z_A3921_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster photo_z_A3921_backup
+Current directory: A2837_check0
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2837_check0
+Current directory: Triangulum
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster Triangulum
+Current directory: DATA_defect_template
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster DATA_defect_template
+Current directory: change_color
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster change_color
+Current directory: spec_z_database
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster spec_z_database
+Current directory: A3921_processCcd2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_processCcd2
+Current directory: A3921_dwarf_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_dwarf_backup
+Current directory: SDSS-C42045
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster SDSS-C42045
+Current directory: mass_lensing_vs_xray_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mass_lensing_vs_xray_backup
+Current directory: A3911_jointcal2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_jointcal2
+Current directory: A2941_outputs
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2941_outputs
+Current directory: A3827_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3827_check
+Current directory: A3809
+Trying: read_merge_full_catalog
+Current catalogue../../Clusters/A3809/read_merge_full_catalog/merge_5to6_g.csv
+Current catalogue../../Clusters/A3809/read_merge_full_catalog/merge_4to7_g.csv
+Current catalogue../../Clusters/A3809/read_merge_full_catalog/merge_5to6_r.csv
+Current catalogue../../Clusters/A3809/read_merge_full_catalog/merge_3to8_r.csv
+Current catalogue../../Clusters/A3809/read_merge_full_catalog/merge_4to7_r.csv
+Current catalogue../../Clusters/A3809/read_merge_full_catalog/merge_3to8_g.csv
+Current catalogue../../Clusters/A3809/read_merge_full_catalog/merge_0to11_g.csv
+Current catalogue../../Clusters/A3809/read_merge_full_catalog/merge_0to11_r.csv
+Current directory: A1606
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A1606/read_merge_full_catalog_output/A1606_merge_001111_g.csv
+Current catalogue../../Clusters/A1606/read_merge_full_catalog_output/A1606_merge_3388_g.csv
+Current catalogue../../Clusters/A1606/read_merge_full_catalog_output/A1606_merge_3388_r.csv
+Current catalogue../../Clusters/A1606/read_merge_full_catalog_output/A1606_merge_001111_r.csv
+Current directory: A1650_image
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1650_image
+Current directory: A401
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A401
+Current directory: A3921_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_check2
+Current directory: RXCJ1558.3-1410
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/RXCJ1558.3-1410/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/RXCJ1558.3-1410/read_merge_full_catalog_output/merge_g.csv
+Current directory: plot_ccd_position_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster plot_ccd_position_backup
+Current directory: A85_ps1_new
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A85_ps1_new
+Current directory: A3809_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3809_check2
+Current directory: A2837
+Trying: read_merge_full_catalog_output
+Current directory: color_term_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster color_term_backup
+Current directory: A3806
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3806
+Current directory: A2029CFHT
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2029CFHT
+Current directory: A3921_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_check3
+Current directory: RXCJ1524.2-3154
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster RXCJ1524.2-3154
+Current directory: jointcal_stat
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster jointcal_stat
+Current directory: MCXCJ1358
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster MCXCJ1358
+Current directory: A3667_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3667_check
+Current directory: A1651
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A1651/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/A1651/read_merge_full_catalog_output/merge_g.csv
+Current directory: color_term
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster color_term
+Current directory: A2457
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2457
+Current directory: A3158
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A3158/read_merge_full_catalog_output/merge_A3158_5566_r.csv
+Current catalogue../../Clusters/A3158/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/A3158/read_merge_full_catalog_output/merge_A3158_5566_g.csv
+Current catalogue../../Clusters/A3158/read_merge_full_catalog_output/merge_g.csv
+Current directory: A3921_test2_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_test2_check3
+Current directory: A1650_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1650_check
+Current directory: A85_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A85_check
+Current directory: A2811_ps1_test2_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_ps1_test2_check3
+Current directory: galactic_extinction_database
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster galactic_extinction_database
+Current directory: A2426_test2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2426_test2
+Current directory: A85_image
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A85_image
+Current directory: dm_catalog_header
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster dm_catalog_header
+Current directory: background_subtraction
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster background_subtraction
+Current directory: photo_z_DECam_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster photo_z_DECam_backup
+Current directory: A3376_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3376_check
+Current directory: COSMOS
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster COSMOS
+Current directory: jointcal_stat_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster jointcal_stat_backup
+Current directory: DECamMasterCal_56475
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster DECamMasterCal_56475
+Current directory: raw
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster raw
+Current directory: Tools
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster Tools
+Current directory: fv5.4
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster fv5.4
+Current directory: photo_z_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster photo_z_backup
+Current directory: spec_z_database_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster spec_z_database_backup
+Current directory: A3911_sm_dr2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_sm_dr2
+Current directory: photo_z
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster photo_z
+Current directory: Tools_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster Tools_backup
+Current directory: A1750_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1750_check
+Current directory: A2721
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2721
+Current directory: A1644_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1644_check
+Current directory: photo_z_DECam
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster photo_z_DECam
+Current directory: A2811_ps1_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_ps1_check2
+Current directory: A3571_outputs
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3571_outputs
+Current directory: galfit_test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster galfit_test
+Current directory: A2811_sm_test2_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_sm_test2_check3
+Current directory: A2029v2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2029v2
+Current directory: footprint
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster footprint
+Current directory: A2384_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2384_check
+Current directory: A2721_old
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2721_old
+Current directory: A1644
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1644
+Current directory: combine_patch_color
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster combine_patch_color
+Current directory: RXCJ1958.2-3011
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/RXCJ1958.2-3011/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/RXCJ1958.2-3011/read_merge_full_catalog_output/merge_g.csv
+Current directory: A2033
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2033
+Current directory: photo_z_test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster photo_z_test
+Current directory: A1750_old
+Trying: read_merge_full_catalog
+Current catalogue../../Clusters/A1750_old/read_merge_full_catalog/merge_r.csv
+Current catalogue../../Clusters/A1750_old/read_merge_full_catalog/merge_g.csv
+Current directory: check_mastercal_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster check_mastercal_backup
+Current directory: A2029v3
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A2029v3/read_merge_full_catalog_output/A2029_merge_3388_r.csv
+Current catalogue../../Clusters/A2029v3/read_merge_full_catalog_output/A2029_merge_4477_g.csv
+Current catalogue../../Clusters/A2029v3/read_merge_full_catalog_output/A2029_merge_5566_r.csv
+Current catalogue../../Clusters/A2029v3/read_merge_full_catalog_output/A2029_merge_001111_r.csv
+Current catalogue../../Clusters/A2029v3/read_merge_full_catalog_output/A2029_merge_001111_g.csv
+Current catalogue../../Clusters/A2029v3/read_merge_full_catalog_output/A2029_merge_5566_g.csv
+Current catalogue../../Clusters/A2029v3/read_merge_full_catalog_output/A2029_merge_3388_g.csv
+Current catalogue../../Clusters/A2029v3/read_merge_full_catalog_output/A2029_merge_4477_r.csv
+Current directory: A2811_sm_check_visit_new
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_sm_check_visit_new
+Current directory: mass_fit_global_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mass_fit_global_backup
+Current directory: cls_tool_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster cls_tool_backup
+Current directory: DECamMasterCal_56876
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster DECamMasterCal_56876
+Current directory: A3911_sm_dr2_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_sm_dr2_check3
+Current directory: A2420
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2420
+Current directory: redmapper
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster redmapper
+Current directory: A3911_des
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_des
+Current directory: ref_cat_query_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster ref_cat_query_backup
+Current directory: A3827_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3827_check2
+Current directory: mastercal_database
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mastercal_database
+Current directory: A85_ps1_check_visit_new
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A85_ps1_check_visit_new
+Current directory: A3695_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3695_check
+Current directory: mass_lensing_vs_xray
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mass_lensing_vs_xray
+Current directory: A3822
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3822
+Current directory: A754_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A754_check
+Current directory: A3911_summary
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_summary
+Current directory: A2029
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A2029/read_merge_full_catalog_output/A2029_merge_3388_r.csv
+Current catalogue../../Clusters/A2029/read_merge_full_catalog_output/A2029_merge_4477_g.csv
+Current catalogue../../Clusters/A2029/read_merge_full_catalog_output/A2029_merge_5566_r.csv
+Current catalogue../../Clusters/A2029/read_merge_full_catalog_output/A2029_merge_001111_r.csv
+Current catalogue../../Clusters/A2029/read_merge_full_catalog_output/A2029_merge_001111_g.csv
+Current catalogue../../Clusters/A2029/read_merge_full_catalog_output/A2029_merge_5566_g.csv
+Current catalogue../../Clusters/A2029/read_merge_full_catalog_output/A2029_merge_3388_g.csv
+Current catalogue../../Clusters/A2029/read_merge_full_catalog_output/A2029_merge_4477_r.csv
+Current directory: A4010
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A4010/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/A4010/read_merge_full_catalog_output/merge_g.csv
+Current directory: A3911_test_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_test_check3
+Current directory: A2029_old
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2029_old
+Current directory: A3921_sm_dr2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_sm_dr2
+Current directory: A2457_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2457_check
+Current directory: ingest_out
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster ingest_out
+Current directory: A3921_dwarf
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_dwarf
+Current directory: automatic_pipeline_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster automatic_pipeline_backup
+Current directory: Xray
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster Xray
+Current directory: config
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster config
+Current directory: background_subtraction_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster background_subtraction_backup
+Current directory: SDSS-C41209_old
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/SDSS-C41209_old/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/SDSS-C41209_old/read_merge_full_catalog_output/merge_g.csv
+Current directory: A3571_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3571_check
+Current directory: CL2010scratch
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster CL2010scratch
+Current directory: DATA_CALIB_template_bk_defect_bias_fringe
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster DATA_CALIB_template_bk_defect_bias_fringe
+Current directory: A2811_ps1
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A2811_ps1/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/A2811_ps1/read_merge_full_catalog_output/merge_g.csv
+Current directory: A2811_sm_test2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_sm_test2
+Current directory: photo_z_A3921_all
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster photo_z_A3921_all
+Current directory: A2050
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2050
+Current directory: mass_fit
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mass_fit
+Current directory: automatic_pipeline
+Trying: read_merge_full_catalog
+Current directory: A2811_ps1_jointcal2_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_ps1_jointcal2_check3
+Current directory: A2426
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2426
+Current directory: RXCJ1217.6+0339
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster RXCJ1217.6+0339
+Current directory: A2384_outputs
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2384_outputs
+Current directory: old
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster old
+Current directory: plot_ccd_position
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster plot_ccd_position
+Current directory: A2029_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2029_check2
+Current directory: A1650_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1650_check2
+Current directory: A3911_processCcd2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_processCcd2
+Current directory: RXCJ0524.4+0819
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/RXCJ0524.4+0819/read_merge_full_catalog_output/merge_r.csv
+Current directory: RXCJ1626.3-3329
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster RXCJ1626.3-3329
+Current directory: A754
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A754
+Current directory: SDSS-C42010
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster SDSS-C42010
+Current directory: A3558
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A3558/read_merge_full_catalog_output/merge_A3558_4477_g.csv
+Current catalogue../../Clusters/A3558/read_merge_full_catalog_output/merge_A3558_3388_g.csv
+Current catalogue../../Clusters/A3558/read_merge_full_catalog_output/merge_A3558_001111_g.csv
+Current catalogue../../Clusters/A3558/read_merge_full_catalog_output/merge_A3558_001111_r.csv
+Current catalogue../../Clusters/A3558/read_merge_full_catalog_output/merge_A3558_4477_r.csv
+Current catalogue../../Clusters/A3558/read_merge_full_catalog_output/merge_A3558_5566_r.csv
+Current catalogue../../Clusters/A3558/read_merge_full_catalog_output/merge_A3558_5566_g.csv
+Current catalogue../../Clusters/A3558/read_merge_full_catalog_output/merge_A3558_3388_r.csv
+Current directory: A3376
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3376
+Current directory: mock_catalog
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mock_catalog
+Current directory: A780
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A780
+Current directory: ref_cat_query
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster ref_cat_query
+Current directory: RXCJ1217.6+0339_test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster RXCJ1217.6+0339_test
+Current directory: A3921_check_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_check_backup
+Current directory: check_mastercal
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster check_mastercal
+Current directory: A2426_old
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2426_old
+Current directory: test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster test
+Current directory: A3558_test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3558_test
+Current directory: A3921_jointcal2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_jointcal2
+Current directory: A3911_test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_test
+Current directory: A85v2
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A85v2/read_merge_full_catalog_output/merge_5to6_g.csv
+Current catalogue../../Clusters/A85v2/read_merge_full_catalog_output/merge_4to7_g.csv
+Current catalogue../../Clusters/A85v2/read_merge_full_catalog_output/merge_5to6_r.csv
+Current catalogue../../Clusters/A85v2/read_merge_full_catalog_output/merge_3to8_r.csv
+Current catalogue../../Clusters/A85v2/read_merge_full_catalog_output/merge_4to7_r.csv
+Current catalogue../../Clusters/A85v2/read_merge_full_catalog_output/merge_3to8_g.csv
+Current directory: A754_input
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A754_input
+Current directory: A2426_test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2426_test
+Current directory: A3911_test2_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_test2_check3
+Current directory: A85
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A85/read_merge_full_catalog_output/merge_5to6_g.csv
+Current catalogue../../Clusters/A85/read_merge_full_catalog_output/merge_4to7_g.csv
+Current catalogue../../Clusters/A85/read_merge_full_catalog_output/merge_5to6_r.csv
+Current catalogue../../Clusters/A85/read_merge_full_catalog_output/merge_3to8_r.csv
+Current catalogue../../Clusters/A85/read_merge_full_catalog_output/merge_4to7_r.csv
+Current catalogue../../Clusters/A85/read_merge_full_catalog_output/merge_3to8_g.csv
+Current directory: A1650_outputs
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1650_outputs
+Current directory: A85_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A85_check2
+Current directory: galactic_extinction_database_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster galactic_extinction_database_backup
+Current directory: A1606_test
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1606_test
+Current directory: A2384
+Trying: read_merge_full_catalog
+Current catalogue../../Clusters/A2384/read_merge_full_catalog/merge_1to10_g.csv
+Current catalogue../../Clusters/A2384/read_merge_full_catalog/merge_1to10_r.csv
+Current catalogue../../Clusters/A2384/read_merge_full_catalog/merge_5to6_g.csv
+Current catalogue../../Clusters/A2384/read_merge_full_catalog/merge_4to7_g.csv
+Current catalogue../../Clusters/A2384/read_merge_full_catalog/merge_5to6_r.csv
+Current catalogue../../Clusters/A2384/read_merge_full_catalog/merge_3to8_r.csv
+Current catalogue../../Clusters/A2384/read_merge_full_catalog/merge_4to7_r.csv
+Current catalogue../../Clusters/A2384/read_merge_full_catalog/merge_3to8_g.csv
+Current directory: A3911_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_check2
+Current directory: A2811_ps1_test2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_ps1_test2
+Current directory: A85_sm_new
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A85_sm_new
+Current directory: A3911_jointcal2_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_jointcal2_check3
+Current directory: A1750
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A1750
+Current directory: starflat
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster starflat
+Current directory: A3921_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_check
+Current directory: mass_fit_jem
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mass_fit_jem
+Current directory: A3911_test2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_test2
+Current directory: A2837_outputs
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2837_outputs
+Current directory: DATA_CALIB_template
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster DATA_CALIB_template
+Current directory: A2597_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2597_check
+Current directory: A3921_jointcal2_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_jointcal2_check3
+Current directory: A2811_ps1_check_visit_new
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_ps1_check_visit_new
+Current directory: A2426_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2426_check
+Current directory: DATA
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster DATA
+Current directory: A2597
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A2597/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/A2597/read_merge_full_catalog_output/merge_g.csv
+Current directory: A1650v2
+Trying: read_merge_full_catalog
+Current catalogue../../Clusters/A1650v2/read_merge_full_catalog/merge_5to6_g.csv
+Current catalogue../../Clusters/A1650v2/read_merge_full_catalog/merge_4to7_g.csv
+Current catalogue../../Clusters/A1650v2/read_merge_full_catalog/merge_5to6_r.csv
+Current catalogue../../Clusters/A1650v2/read_merge_full_catalog/merge_3to8_r.csv
+Current catalogue../../Clusters/A1650v2/read_merge_full_catalog/merge_4to7_r.csv
+Current catalogue../../Clusters/A1650v2/read_merge_full_catalog/merge_3to8_g.csv
+Current catalogue../../Clusters/A1650v2/read_merge_full_catalog/merge_0to11_g.csv
+Current catalogue../../Clusters/A1650v2/read_merge_full_catalog/merge_0to11_r.csv
+Current directory: A2670
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2670
+Current directory: check_visit
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster check_visit
+Current directory: ref_cat_database
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster ref_cat_database
+Current directory: A3827
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3827
+Current directory: RXCJ1539.5-8335
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster RXCJ1539.5-8335
+Current directory: A3836
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A3836/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/A3836/read_merge_full_catalog_output/merge_g.csv
+Current directory: A119
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A119
+Current directory: combine_fiatmap_optical
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster combine_fiatmap_optical
+Current directory: A539
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A539
+Current directory: A3112
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3112
+Current directory: check_visit_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster check_visit_backup
+Current directory: A3911_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_check3
+Current directory: footprint_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster footprint_backup
+Current directory: A3266
+Trying: read_merge_full_catalog
+Current catalogue../../Clusters/A3266/read_merge_full_catalog/merge_5to6_g.csv
+Current catalogue../../Clusters/A3266/read_merge_full_catalog/merge_4to7_g.csv
+Current catalogue../../Clusters/A3266/read_merge_full_catalog/merge_5to6_r.csv
+Current catalogue../../Clusters/A3266/read_merge_full_catalog/merge_3to8_r.csv
+Current catalogue../../Clusters/A3266/read_merge_full_catalog/merge_4to7_r.csv
+Current catalogue../../Clusters/A3266/read_merge_full_catalog/merge_3to8_g.csv
+Current catalogue../../Clusters/A3266/read_merge_full_catalog/merge_0to11_g.csv
+Current catalogue../../Clusters/A3266/read_merge_full_catalog/merge_0to11_r.csv
+Current directory: A3571
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A3571/read_merge_full_catalog_output/merge_5to6_g.csv
+Current catalogue../../Clusters/A3571/read_merge_full_catalog_output/merge_4to7_g.csv
+Current catalogue../../Clusters/A3571/read_merge_full_catalog_output/merge_5to6_r.csv
+Current catalogue../../Clusters/A3571/read_merge_full_catalog_output/merge_3to8_r.csv
+Current catalogue../../Clusters/A3571/read_merge_full_catalog_output/merge_4to7_r.csv
+Current catalogue../../Clusters/A3571/read_merge_full_catalog_output/merge_3to8_g.csv
+Current catalogue../../Clusters/A3571/read_merge_full_catalog_output/merge_0to11_g.csv
+Current catalogue../../Clusters/A3571/read_merge_full_catalog_output/merge_0to11_r.csv
+Current directory: A3266_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3266_check
+Current directory: mass_fit_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster mass_fit_backup
+Current directory: combine_patch_color_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster combine_patch_color_backup
+Current directory: A3911_des_check3
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3911_des_check3
+Current directory: A3822_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3822_check
+Current directory: A3266_check2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3266_check2
+Current directory: photo_z_A3921
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster photo_z_A3921
+Current directory: fiat
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster fiat
+Current directory: galfit_test_backup
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster galfit_test_backup
+Current directory: RXCJ1407.8-5100
+Trying: read_merge_full_catalog
+Current directory: A2420_CFHT
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2420_CFHT
+Current directory: A2941
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A2941/read_merge_full_catalog_output/merge_5to6_g.csv
+Current catalogue../../Clusters/A2941/read_merge_full_catalog_output/merge_r.csv
+Current catalogue../../Clusters/A2941/read_merge_full_catalog_output/merge_4to7_g.csv
+Current catalogue../../Clusters/A2941/read_merge_full_catalog_output/merge_5to6_r.csv
+Current catalogue../../Clusters/A2941/read_merge_full_catalog_output/merge_3to8_r.csv
+Current catalogue../../Clusters/A2941/read_merge_full_catalog_output/merge_4to7_r.csv
+Current catalogue../../Clusters/A2941/read_merge_full_catalog_output/merge_3to8_g.csv
+Current catalogue../../Clusters/A2941/read_merge_full_catalog_output/merge_g.csv
+Current directory: A2811_test2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_test2
+Current directory: A1650
+Trying: read_merge_full_catalog
+Current catalogue../../Clusters/A1650/read_merge_full_catalog/merge_5to6_g.csv
+Current catalogue../../Clusters/A1650/read_merge_full_catalog/merge_4to7_g.csv
+Current catalogue../../Clusters/A1650/read_merge_full_catalog/merge_5to6_r.csv
+Current catalogue../../Clusters/A1650/read_merge_full_catalog/merge_3to8_r.csv
+Current catalogue../../Clusters/A1650/read_merge_full_catalog/merge_4to7_r.csv
+Current catalogue../../Clusters/A1650/read_merge_full_catalog/merge_3to8_g.csv
+Current catalogue../../Clusters/A1650/read_merge_full_catalog/merge_0to11_g.csv
+Current catalogue../../Clusters/A1650/read_merge_full_catalog/merge_0to11_r.csv
+Current directory: A2811_sm_jointcal2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2811_sm_jointcal2
+Current directory: A3921
+Trying: read_merge_full_catalog
+Current catalogue../../Clusters/A3921/read_merge_full_catalog/merge_5to6_g.csv
+Current catalogue../../Clusters/A3921/read_merge_full_catalog/merge_4to7_g.csv
+Current catalogue../../Clusters/A3921/read_merge_full_catalog/merge_5to6_r.csv
+Current catalogue../../Clusters/A3921/read_merge_full_catalog/merge_3to8_r.csv
+Current catalogue../../Clusters/A3921/read_merge_full_catalog/merge_4to7_r.csv
+Current catalogue../../Clusters/A3921/read_merge_full_catalog/merge_3to8_g.csv
+Current catalogue../../Clusters/A3921/read_merge_full_catalog/merge_0to11_g.csv
+Current catalogue../../Clusters/A3921/read_merge_full_catalog/merge_0to11_r.csv
+Current directory: RXCJ1407.8-5100_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster RXCJ1407.8-5100_check
+Current directory: read_merge_full_catalog
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster read_merge_full_catalog
+Current directory: A3628
+Trying: read_merge_full_catalog_output
+Current catalogue../../Clusters/A3628/read_merge_full_catalog_output/merge_A3628_3388_r.csv
+Current catalogue../../Clusters/A3628/read_merge_full_catalog_output/merge_A3628_5566_r.csv
+Current catalogue../../Clusters/A3628/read_merge_full_catalog_output/merge_A3628_3388_g.csv
+Current catalogue../../Clusters/A3628/read_merge_full_catalog_output/merge_A3628_001111_r.csv
+Current catalogue../../Clusters/A3628/read_merge_full_catalog_output/merge_A3628_4477_r.csv
+Current catalogue../../Clusters/A3628/read_merge_full_catalog_output/merge_A3628_5566_g.csv
+Current catalogue../../Clusters/A3628/read_merge_full_catalog_output/merge_A3628_4477_g.csv
+Current catalogue../../Clusters/A3628/read_merge_full_catalog_output/merge_A3628_001111_g.csv
+Current directory: A3921_outputs
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_outputs
+Current directory: A3921_test2
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A3921_test2
+Current directory: A2837_check
+No read_merge_full_catalog_output or read_merge_full_catalog found in cluster A2837_check
+Successfuly copied 143 catalogs.

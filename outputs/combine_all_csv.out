@@ -1,0 +1,96 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 1844462
+##  Job Name : run_script.sh
+##  Nodelist : node1304
+##      CPUs : 4
+##  Mem/Node : 32768 MB
+## Directory : /gpfs/data/idellant/dmi/red-galaxies
+##   Started : Sun Jul 25 20:36:39 EDT 2021
+###############################################################################
+module: unloading 'python/2.7.12'
+module: loading 'python/3.7.4'
+Trying cluster: A2029_merge_001111_
+Finished reading file:  files/clusters/A2029_merge_001111_u.csv
+Finished reading file:  files/clusters/A2029_merge_001111_g.csv
+Finished reading file:  files/clusters/A2029_merge_001111_r.csv
+Finished reading file:  files/clusters/A2029_merge_001111_i.csv
+Finished reading file:  files/clusters/A2029_merge_001111_z.csv
+Found more galaxies:  805575
+Total searched: 10052987
+Trying cluster: merge_A3558_001111_
+Finished reading file:  files/clusters/merge_A3558_001111_u.csv
+Finished reading file:  files/clusters/merge_A3558_001111_g.csv
+Finished reading file:  files/clusters/merge_A3558_001111_r.csv
+Finished reading file:  files/clusters/merge_A3558_001111_i.csv
+Finished reading file:  files/clusters/merge_A3558_001111_z.csv
+Found more galaxies:  543811
+Total searched: 18632316
+Trying cluster: A1606_merge_001111_
+Finished reading file:  files/clusters/A1606_merge_001111_u.csv
+Finished reading file:  files/clusters/A1606_merge_001111_g.csv
+Finished reading file:  files/clusters/A1606_merge_001111_r.csv
+Finished reading file:  files/clusters/A1606_merge_001111_i.csv
+Finished reading file:  files/clusters/A1606_merge_001111_z.csv
+Found more galaxies:  0
+Total searched: 26772372
+Trying cluster: merge_5to6_
+Finished reading file:  files/clusters/merge_5to6_u.csv
+Finished reading file:  files/clusters/merge_5to6_g.csv
+Finished reading file:  files/clusters/merge_5to6_r.csv
+Finished reading file:  files/clusters/merge_5to6_i.csv
+Finished reading file:  files/clusters/merge_5to6_z.csv
+Found more galaxies:  51072
+Total searched: 27340427
+Trying cluster: merge_0to11_
+Finished reading file:  files/clusters/merge_0to11_u.csv
+Finished reading file:  files/clusters/merge_0to11_g.csv
+Finished reading file:  files/clusters/merge_0to11_r.csv
+Finished reading file:  files/clusters/merge_0to11_i.csv
+Finished reading file:  files/clusters/merge_0to11_z.csv
+Found more galaxies:  603931
+Total searched: 35614032
+Trying cluster: merge_1to10_
+Finished reading file:  files/clusters/merge_1to10_u.csv
+Finished reading file:  files/clusters/merge_1to10_g.csv
+Finished reading file:  files/clusters/merge_1to10_r.csv
+Finished reading file:  files/clusters/merge_1to10_i.csv
+Finished reading file:  files/clusters/merge_1to10_z.csv
+Found more galaxies:  479983
+Total searched: 41695802
+Trying cluster: A3809merge_0to11_
+Count not process A3809merge_0to11_:  [Errno 2] No such file or directory: 'files/clusters/A3809merge_0to11_u.csv'
+Trying cluster: merge_A3628_001111_
+Finished reading file:  files/clusters/merge_A3628_001111_u.csv
+Finished reading file:  files/clusters/merge_A3628_001111_g.csv
+Finished reading file:  files/clusters/merge_A3628_001111_r.csv
+Finished reading file:  files/clusters/merge_A3628_001111_i.csv
+Finished reading file:  files/clusters/merge_A3628_001111_z.csv
+Found more galaxies:  164979
+Total searched: 46189805
+Trying cluster: merge_4to7_
+Finished reading file:  files/clusters/merge_4to7_u.csv
+Finished reading file:  files/clusters/merge_4to7_g.csv
+Finished reading file:  files/clusters/merge_4to7_r.csv
+Finished reading file:  files/clusters/merge_4to7_i.csv
+Finished reading file:  files/clusters/merge_4to7_z.csv
+Found more galaxies:  198885
+Total searched: 48459030
+Trying cluster: A3911merge_0to11_
+Finished reading file:  files/clusters/A3911merge_0to11_u.csv
+Finished reading file:  files/clusters/A3911merge_0to11_g.csv
+Finished reading file:  files/clusters/A3911merge_0to11_r.csv
+Finished reading file:  files/clusters/A3911merge_0to11_i.csv
+Finished reading file:  files/clusters/A3911merge_0to11_z.csv
+Found more galaxies:  602692
+Total searched: 56728272
+Trying cluster: merge_
+Finished reading file:  files/clusters/merge_u.csv
+Finished reading file:  files/clusters/merge_g.csv
+Finished reading file:  files/clusters/merge_r.csv
+Finished reading file:  files/clusters/merge_i.csv
+Finished reading file:  files/clusters/merge_z.csv
+Found more galaxies:  668169
+Total searched: 66288565
+Trying cluster: merge_1to10_g
+Count not process merge_1to10_g:  [Errno 2] No such file or directory: 'files/clusters/merge_1to10_gu.csv'
+Total number of galaxies found: 4119097

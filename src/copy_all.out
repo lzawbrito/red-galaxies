@@ -1,0 +1,14 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 1843775
+##  Job Name : run_script.sh
+##  Nodelist : node1307
+##      CPUs : 1
+##  Mem/Node : 32768 MB
+## Directory : /gpfs/data/idellant/dmi/red-galaxies/src
+##   Started : Sun Jul 25 19:30:59 EDT 2021
+###############################################################################
+module: unloading 'python/2.7.12'
+module: loading 'python/3.7.4'
+[Errno 2] No such file or directory: '../../Clusters/'
+Make sure you are running in ~/data/dmi/red-galaxies
+Successfuly copied 0 catalogs.
