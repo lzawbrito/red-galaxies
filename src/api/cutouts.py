@@ -1,0 +1,63 @@
+from astropy.coordinates.sky_coordinate import SkyCoord
+from astropy.io import fits 
+from astropy.wcs import WCS
+import numpy as np 
+
+# TODO:
+# - find way to test whether ra, dec are within the image
+
+class CutoutGenerator:
+    def __init__(self, fits_data, fits_hdr) -> None:
+        """
+        Class used for obtaining cutouts of fits images. Determines 
+        world coordinate system upon construction from fits header.
+        """
+        self.fits_data = fits_data
+        self.fits_hrd = fits_hdr
+        self.wcs = WCS(fits_hdr)
+
+    def get_cutout(self, ra, dec, dim=(64, 64)):
+        """
+        Obtains a cutout centered at the given RA, DEC coordinates.
+        """
+        if not(self.is_coord_in_image(ra, dec)):
+            print("Coordinates outside image!")
+            return 
+
+        width = dim[0]
+        height = dim[1]
+        raw_x, raw_y = self.wcs.world_to_pixel(SkyCoord(ra, dec, unit="deg"))
+        x, y = int(raw_x), int(raw_y)
+        cutout = []
+        try:
+            for row in self.fits_data[y - int(height / 2):y + int(height / 2)]:
+                cutout.append(row[x - int(width / 2):x + int(width / 2)])
+        except IndexError:
+            print('Error: object too close to edge of image.')
+            # TODO try getting cutout that is exactly at edge?
+        return cutout
+
+    def is_coord_in_image(self, ra, dec):
+        """
+        Determines wheether the given ra, dec coordinates are in the fits image. 
+        """
+        raw_x, raw_y = self.wcs.world_to_pixel(SkyCoord(ra, dec, unit="deg"))
+        x, y = int(raw_x), int(raw_y)
+        img_height, img_width = np.shape(self.fits_data)
+        return 0 < x < img_width and 0 < y < img_height
+
+
+# According to Dell'Antonio, the conversion from pixels to world 
+# coordinates is:
+#   Ra(x,y) = Crval1 + (x-Crpix1)*CD1_1 + (y-Crpix2)*CD1_2
+#   Dec(x,y) = Crval2 + (x-crpix1)*Cd2_1+(y-crpix2)*cd2_2
+if __name__ == '__main__':
+    PATH = '../../data/A3558_g00-1111.fits'
+    data, header = fits.getdata(PATH, header=True)
+
+    w = WCS(header)
+    coords = w.pixel_to_world(-1, 0)
+    coords2 = w.world_to_pixel(SkyCoord(204.08830109, -33.24041172, unit="deg"))
+    print(coords)
+    print(coords2)
+
