@@ -7,7 +7,7 @@ import numpy as np
 # - find way to test whether ra, dec are within the image
 
 class CutoutGenerator:
-    def __init__(self, fits_data, fits_hdr) -> None:
+    def __init__(self, fits_data, fits_hdr):
         """
         Class used for obtaining cutouts of fits images. Determines 
         world coordinate system upon construction from fits header.
@@ -39,7 +39,7 @@ class CutoutGenerator:
 
     def is_coord_in_image(self, ra, dec):
         """
-        Determines wheether the given ra, dec coordinates are in the fits image. 
+        Determines whether the given ra, dec coordinates are in the fits image. 
         """
         raw_x, raw_y = self.wcs.world_to_pixel(SkyCoord(ra, dec, unit="deg"))
         x, y = int(raw_x), int(raw_y)

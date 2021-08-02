@@ -1,3 +1,4 @@
+cluster,path,band
 A2811_ps1_jointcal2,../../Clusters/A2811_ps1_jointcal2/combine_patch_color_output/A2811_u44-77.fits,u
 A2811_ps1_jointcal2,../../Clusters/A2811_ps1_jointcal2/combine_patch_color_output/A2811_g44-77.fits,g
 A2811_ps1_jointcal2,../../Clusters/A2811_ps1_jointcal2/combine_patch_color_output/A2811_r44-77.fits,r
