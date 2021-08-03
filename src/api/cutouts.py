@@ -15,6 +15,7 @@ class CutoutGenerator:
         self.fits_data = fits_data
         self.fits_hrd = fits_hdr
         self.wcs = WCS(fits_hdr)
+        self.dims = (len(fits_data[0]), len(fits_data))
 
     def get_cutout(self, ra, dec, dim=(64, 64)):
         """
@@ -43,7 +44,7 @@ class CutoutGenerator:
         """
         raw_x, raw_y = self.wcs.world_to_pixel(SkyCoord(ra, dec, unit="deg"))
         x, y = int(raw_x), int(raw_y)
-        img_height, img_width = np.shape(self.fits_data)
+        img_height, img_width = self.dims
         return 0 < x < img_width and 0 < y < img_height
 
 

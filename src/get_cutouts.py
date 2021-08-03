@@ -22,14 +22,16 @@ for _, i in images_df.iterrows():
     cgs[i['path']] = CutoutGenerator(data, header)
 
 for __, cluster in unique_clusters_df.iterrows():
+    cg = cgs[cluster['path']]
     for _, coord in all_red_galaxies_coord_df.iterrows():
-        cg = cgs[cluster['path']]
         try:
             if not cg.is_coord_in_image(coord['ra'], coord['dec']):
                 continue
-            #print('Coords ' + str(coord['ra']) + ', ' + str(coord['dec']) + \
-            #      ' found in cluster ' + str(cluster['path']))
+            print('Coords ' + str(coord['ra']) + ', ' + str(coord['dec']) + \
+                  ' found in cluster ' + str(cluster['path']))
+            
         except Exception as e:
             continue 
+
 
 
