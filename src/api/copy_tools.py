@@ -115,8 +115,8 @@ def get_by_bands(subdirectory, current_catalog_dir, file_extension, bands, dest_
 	basedir, largest_filename = get_largest_size_catalog(catalogs, bands[1])
 	# TODO below does not work becuse some catalogues are missing `u` band for some reason??
 	if not(largest_filename == ''):
-		largest_catalogs = [join(basedir, largest_filename.replace('_' + bands[1], '_' + b)) for b in bands]
-		filtered_largest_catalogs = [[subdirectory, join(basedir, largest_filename.replace('_' + bands[1], '_' + b)), b]\
-									 for c in largest_catalogs if path.isfile(c)]
+		largest_catalogs = [(join(basedir, largest_filename.replace('_' + bands[1], '_' + b)), b) for b in bands]
+		filtered_largest_catalogs = [[subdirectory, c, b]\
+									 for c, b in largest_catalogs if path.isfile(c)]
 		add_to_copy_queue(filtered_largest_catalogs, dest_file)
 
