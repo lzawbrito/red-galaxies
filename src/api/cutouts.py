@@ -51,7 +51,8 @@ class CutoutGenerator:
         """
         Returns the ra, dec coordinates for the given pixel in the image. 
         """
-        return self.wcs.pixel_to_world(x, y)
+        coords = self.wcs.pixel_to_world(x, y)
+        return coords[0], coords[1]
 
 
 # According to Dell'Antonio, the conversion from pixels to world 

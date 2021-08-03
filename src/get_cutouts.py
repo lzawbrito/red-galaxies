@@ -21,6 +21,12 @@ for _, i in images_df.iterrows():
     data, header = fits.getdata(i['path'], header=True)
     cgs[i['path']] = CutoutGenerator(data, header)
 
+test_ra, test_dec = cgs[next(images_df.iterrows())[1]['path']].get_coords(50, 50)
+test_coords_df = pd.DataFrame([00000000, test_ra, test_dec, 0, 0], 
+                            colunms=['id','ra','dec','extendedness','cmodel_mag'])
+all_red_galaxies_df.append(test_coords_df)
+
+
 cutouts = []
 
 for __, cluster in unique_clusters_df.iterrows():
