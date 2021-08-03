@@ -8,7 +8,7 @@ RED_GALAXIES_CSV = 'files/all_red_galaxies.csv'
 images_df = pd.read_csv(IMAGE_CSV)
 
 # take head for now to avoid memory issues
-all_red_galaxies_df = pd.read_csv(RED_GALAXIES_CSV).sample(n=100) 
+all_red_galaxies_df = pd.read_csv(RED_GALAXIES_CSV).sample(n=20000) 
 
 # obtain ra, dec dataframe 
 all_red_galaxies_coord_df = all_red_galaxies_df[['ra', 'dec']]
@@ -22,8 +22,9 @@ for _, i in images_df.iterrows():
     cgs[i['path']] = CutoutGenerator(data, header)
 
 for __, cluster in unique_clusters_df.iterrows():
+    cg = cgs[cluster['path']]
+    print(cluster)
     for _, coord in all_red_galaxies_coord_df.iterrows():
-        cg = cgs[cluster['path']]
         try:
             if not cg.is_coord_in_image(coord['ra'], coord['dec']):
                 continue
@@ -31,5 +32,4 @@ for __, cluster in unique_clusters_df.iterrows():
             #      ' found in cluster ' + str(cluster['path']))
         except Exception as e:
             continue 
-
 
