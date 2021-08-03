@@ -49,10 +49,13 @@ class CutoutGenerator:
 
     def get_coords(self, x, y):
         """
-        Returns the ra, dec coordinates for the given pixel in the image. 
+        Returns the ra, dec coordinates for the given pixel in the image. Note 
+        that the methods returns the coordinates as floats, not as SkyCoord 
+        objects.
         """
         coords = self.wcs.pixel_to_world(x, y)
-        return coords[0], coords[1]
+        print(coords)
+        return coords.ra.degree, coords.dec.degree
 
 
 # According to Dell'Antonio, the conversion from pixels to world 

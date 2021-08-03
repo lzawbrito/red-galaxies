@@ -22,19 +22,26 @@ for _, i in images_df.iterrows():
     cgs[i['path']] = CutoutGenerator(data, header)
 
 test_ra, test_dec = cgs[next(images_df.iterrows())[1]['path']].get_coords(50, 50)
-test_coords_df = pd.DataFrame([00000000, test_ra, test_dec, 0, 0], 
-                            colunms=['id','ra','dec','extendedness','cmodel_mag'])
-all_red_galaxies_df.append(test_coords_df)
-
+test_coords_df = pd.DataFrame([[test_ra, test_dec]], 
+                            columns=['ra','dec'])
+all_red_galaxies_coord_df = all_red_galaxies_df.append(test_coords_df)
+print(all_red_galaxies_coord_df)
 
 cutouts = []
 
+broken_files = set()
+n_clusters = 0
 for __, cluster in unique_clusters_df.iterrows():
+    n_clusters += 1
+    print(str(n_clusters) + "/" + str(len(unique_clusters_df)))
     test_cg = cgs[cluster['path']]
+    if cluster['path'] in broken_files:
+        continue
     for _, coord in all_red_galaxies_coord_df.iterrows():
         ra = coord['ra']
         dec = coord['dec']
-        print(coord)
+        if round(ra, 4) == round(test_ra, 4) and round(dec, 4) == round(test_dec, 4):
+            print("Currently trying test coordinates")
         try:
             if not test_cg.is_coord_in_image(ra, dec):
                 continue
@@ -44,10 +51,11 @@ for __, cluster in unique_clusters_df.iterrows():
             for ___, image in file_df.iterrows():
                 cg = cgs[image['path']]
                 data = cg.get_cutout(ra, dec)
-                cutouts.append((ra, dec, data))
+                cutouts.append(ra, dec, data)
         except Exception as e:
-            print(str(e))
-            continue 
+            broken_files.add(cluster['path'])
+            break
+                             
 
 print("Writing to file")
 f = open('files/cutouts.csv', 'w')
@@ -57,6 +65,8 @@ for r in cutouts:
     for c in r[:-1]:
         row += str(c) + ","
     row += str(r[-1])
+    f.write(row)
+
 # possible mapreduce pipeline?
 """
 Essentially a join 
