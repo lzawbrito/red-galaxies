@@ -24,10 +24,11 @@ for _, i in images_df.iterrows():
 cutouts = []
 
 for __, cluster in unique_clusters_df.iterrows():
-    ra = coord['ra']
-    dec = coord['dec']
     test_cg = cgs[cluster['path']]
     for _, coord in all_red_galaxies_coord_df.iterrows():
+        ra = coord['ra']
+        dec = coord['dec']
+        print(coord)
         try:
             if not test_cg.is_coord_in_image(ra, dec):
                 continue
@@ -37,9 +38,19 @@ for __, cluster in unique_clusters_df.iterrows():
             for ___, image in file_df.iterrows():
                 cg = cgs[image['path']]
                 data = cg.get_cutout(ra, dec)
-                cutouts.append(((ra, dec), data))
+                cutouts.append((ra, dec, data))
         except Exception as e:
+            print(str(e))
             continue 
 
+print("Writing to file")
+f = open('files/cutouts.csv', 'w')
+f.write('ra,dec,data\n')
+for r in cutouts:
+    row = ""
+    for c in r[:-1]:
+        row += str(c) + ","
+    row += str(r[-1])
 
+f.close()
 
