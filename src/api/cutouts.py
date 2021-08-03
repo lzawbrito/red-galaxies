@@ -47,6 +47,12 @@ class CutoutGenerator:
         img_height, img_width = self.dims
         return 0 < x < img_width and 0 < y < img_height
 
+    def get_coords(self, x, y):
+        """
+        Returns the ra, dec coordinates for the given pixel in the image. 
+        """
+        return self.wcs.pixel_to_world(x, y)
+
 
 # According to Dell'Antonio, the conversion from pixels to world 
 # coordinates is:
@@ -61,4 +67,5 @@ if __name__ == '__main__':
     coords2 = w.world_to_pixel(SkyCoord(204.08830109, -33.24041172, unit="deg"))
     print(coords)
     print(coords2)
+    
 
