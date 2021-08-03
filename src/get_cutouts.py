@@ -51,6 +51,16 @@ for r in cutouts:
     for c in r[:-1]:
         row += str(c) + ","
     row += str(r[-1])
+# possible mapreduce pipeline?
+"""
+Essentially a join 
+- mapper - determine cluster coordinates are in. use above but don't iterate on coords, just have 
+  coords as input to function 
+- mapper - inner most for loop over file_df, use above mapper to determine 'cluster' column value 
+- mapper - set coords to false if they don't appear in a cluster? like len(clusters) == 0?
+- sc.collect() then just write contents of that list to a csv?
+"""
+
 
 f.close()
 
