@@ -1,6 +1,9 @@
+from astropy import wcs
 from astropy.coordinates.sky_coordinate import SkyCoord
 from astropy.io import fits 
 from astropy.wcs import WCS
+from astropy.nddata import Cutout2D
+import astropy.units as u
 import numpy as np 
 
 # TODO:
@@ -16,12 +19,15 @@ class CutoutGenerator:
         self.fits_hdr = fits_hdr
         self.wcs = WCS(fits_hdr)
         self.dims = (len(fits_data[0]), len(fits_data))
-        ra_lims = [self.get_coords(self.dims)[0], self.get_coords(0, 0)[0]].sort
-        dec_lims = [self.get_coords(self.dims)[1], self.get_coords(0, 0)[1]].sort
-        self.coord_bounds = {'ra_min': ra_lims[0],
-                             'ra_max': ra_lims[1],
-                             'dec_min': dec_lims[0],
-                             'dec_max': dec_lims[1]}
+        ra_lims = [self.get_coords(self.dims[0], self.dims[1])[0], self.get_coords(0, 0)[0]] 
+        ra_lims.sort() 
+        dec_lims = [self.get_coords(self.dims[0], self.dims[1])[1], self.get_coords(0, 0)[1]] 
+        dec_lims.sort() 
+        self.coord_bounds = {'ra_min': ra_lims[0], 
+                             'ra_max': ra_lims[1], 
+                             'dec_min': dec_lims[0], 
+                             'dec_max': dec_lims[1]} 
+
 
     def get_cutout(self, ra, dec, dim=(64, 64)):
         """
@@ -30,18 +36,10 @@ class CutoutGenerator:
         if not(self.is_coord_in_image(ra, dec)):
             print("Coordinates outside image!")
             return 
-
-        width = dim[0]
-        height = dim[1]
-        x, y = self.wcs.world_to_array_index_values(SkyCoord(ra, dec, unit="deg"))
-        cutout = []
-        try:
-            for row in self.fits_data[y - int(height / 2):y + int(height / 2)]:
-                cutout.append(row[x - int(width / 2):x + int(width / 2)])
-        except IndexError:
-            print('Error: object too close to edge of image.')
-            # TODO try getting cutout that is exactly at edge?
-        return cutout
+        pos = SkyCoord(ra=ra * u.degree, dec=dec * u.degree)
+        cutout = Cutout2D(self.fits_data, pos, dim, wcs=self.wcs)
+        
+        return cutout.data
 
     def is_coord_in_image(self, ra, dec):
         """
