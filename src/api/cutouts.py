@@ -13,7 +13,7 @@ class CutoutGenerator:
         world coordinate system upon construction from fits header.
         """
         self.fits_data = fits_data
-        self.fits_hrd = fits_hdr
+        self.fits_hdr = fits_hdr
         self.wcs = WCS(fits_hdr)
         #self.self_origin = 
         self.dims = (len(fits_data[0]), len(fits_data))
