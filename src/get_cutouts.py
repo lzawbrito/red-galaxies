@@ -8,7 +8,7 @@ RED_GALAXIES_CSV = 'files/all_galaxies_known_fits.csv'
 images_df = pd.read_csv(IMAGE_CSV)
 
 # take head for now to avoid memory issues
-all_red_galaxies_df = pd.read_csv(RED_GALAXIES_CSV).sample(n=2000)
+all_red_galaxies_df = pd.read_csv(RED_GALAXIES_CSV).sample(n=20000)
 
 # obtain ra, dec dataframe 
 all_red_galaxies_coord_df = all_red_galaxies_df[['ra', 'dec']]
@@ -19,7 +19,6 @@ unique_clusters_df = images_df[images_df['band'] == 'z'].drop_duplicates(subset=
 cgs = {}
 for _, i in images_df.iterrows():
     data, header = fits.getdata(i['path'], header=True)
-    print(header)
     cgs[i['path']] = CutoutGenerator(data, header)
 
 # append test ra, dec coords to ensure script runs properly
@@ -79,6 +78,7 @@ for __, cluster in unique_clusters_df.iterrows():
 
         except Exception as e:
             # Add file that excepts to list of broken files
+            print(e)
             broken_files.add(cluster['path'])
             break
                              
