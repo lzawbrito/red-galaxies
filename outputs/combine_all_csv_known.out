@@ -1,0 +1,20 @@
+## SLURM PROLOG ###############################################################
+##    Job ID : 1919624
+##  Job Name : run_script.sh
+##  Nodelist : node1353
+##      CPUs : 4
+##  Mem/Node : 32768 MB
+## Directory : /gpfs/data/idellant/dmi/red-galaxies
+##   Started : Tue Aug  3 19:20:46 EDT 2021
+###############################################################################
+module: unloading 'python/2.7.12'
+module: loading 'python/3.7.4'
+Trying cluster: ../../Clusters/A3911/read_merge_full_catalog/merge_0to11_
+Finished reading file:  files/clusters/../../Clusters/A3911/read_merge_full_catalog/merge_0to11_u.csv
+Finished reading file:  files/clusters/../../Clusters/A3911/read_merge_full_catalog/merge_0to11_g.csv
+Finished reading file:  files/clusters/../../Clusters/A3911/read_merge_full_catalog/merge_0to11_r.csv
+Finished reading file:  files/clusters/../../Clusters/A3911/read_merge_full_catalog/merge_0to11_i.csv
+Finished reading file:  files/clusters/../../Clusters/A3911/read_merge_full_catalog/merge_0to11_z.csv
+Found more galaxies:  602692
+Total searched: 8269242
+Total number of galaxies found: 602692

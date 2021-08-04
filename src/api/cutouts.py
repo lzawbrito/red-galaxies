@@ -54,7 +54,6 @@ class CutoutGenerator:
         objects.
         """
         coords = self.wcs.pixel_to_world(x, y)
-        print(coords)
         return coords.ra.degree, coords.dec.degree
 
 

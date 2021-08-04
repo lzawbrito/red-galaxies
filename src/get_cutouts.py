@@ -2,13 +2,13 @@ from api.cutouts import CutoutGenerator
 import pandas as pd 
 from astropy.io import fits 
 
-IMAGE_CSV = 'files/cluster_images.csv'
-RED_GALAXIES_CSV = 'files/all_red_galaxies.csv'
+IMAGE_CSV = 'files/known_cluster_images.csv'
+RED_GALAXIES_CSV = 'files/all_galaxies_known_fits.csv'
 
 images_df = pd.read_csv(IMAGE_CSV)
 
 # take head for now to avoid memory issues
-all_red_galaxies_df = pd.read_csv(RED_GALAXIES_CSV).sample(n=20000) 
+all_red_galaxies_df = pd.read_csv(RED_GALAXIES_CSV).sample(n=2000)
 
 # obtain ra, dec dataframe 
 all_red_galaxies_coord_df = all_red_galaxies_df[['ra', 'dec']]
@@ -19,13 +19,15 @@ unique_clusters_df = images_df[images_df['band'] == 'z'].drop_duplicates(subset=
 cgs = {}
 for _, i in images_df.iterrows():
     data, header = fits.getdata(i['path'], header=True)
+    print(header)
     cgs[i['path']] = CutoutGenerator(data, header)
 
 # append test ra, dec coords to ensure script runs properly
-test_ra, test_dec = cgs[next(images_df.iterrows())[1]['path']].get_coords(50, 50)
-test_coords_df = pd.DataFrame([[test_ra, test_dec]], 
+if False:
+    test_ra, test_dec = cgs[next(images_df.iterrows())[1]['path']].get_coords(50, 50)
+    test_coords_df = pd.DataFrame([[test_ra, test_dec]], 
                             columns=['ra','dec'])
-all_red_galaxies_coord_df = all_red_galaxies_df.append(test_coords_df)
+    all_red_galaxies_coord_df = all_red_galaxies_df.append(test_coords_df)
 
 cutouts = []
 
@@ -42,6 +44,7 @@ for __, cluster in unique_clusters_df.iterrows():
     # obtain CutoutGenerator object with which to test whether object 
     # is in image.
     test_cg = cgs[cluster['path']]
+    print(test_cg.get_coords(0, 0))
 
     # Skip current cluster if file broken
     if cluster['path'] in broken_files:
@@ -61,7 +64,6 @@ for __, cluster in unique_clusters_df.iterrows():
             if not test_cg.is_coord_in_image(ra, dec):
                 continue
 
-            found_coords.add((ra, dec))
             print('Coords ' + str(coord['ra']) + ', ' + str(coord['dec']) + \
                   ' found in cluster ' + str(cluster['path']))
 
@@ -72,14 +74,14 @@ for __, cluster in unique_clusters_df.iterrows():
             for ___, image in file_df.iterrows():
                 cg = cgs[image['path']]
                 data = cg.get_cutout(ra, dec)
-                cutouts.append(ra, dec, data)
+                cutouts.append([ra, dec, data])
+            found_coords.add((ra, dec))
 
         except Exception as e:
             # Add file that excepts to list of broken files
             broken_files.add(cluster['path'])
             break
                              
-
 print("Writing to file")
 f = open('files/cutouts.csv', 'w')
 f.write('ra,dec,data\n')
