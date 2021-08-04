@@ -1,9 +1,25 @@
 from api.cutouts import CutoutGenerator
 import pandas as pd 
 from astropy.io import fits 
+<<<<<<< HEAD
+<<<<<<< HEAD
+import traceback
+import numpy as np
 
+# TODO 
+""" 
+- This still runs slowly, figure out why or parallelize.
+  - is_coord_in_image is currently just a less than/greater than operation. 
+- Check if some clusters are still erroring. 
+"""
+FILENAME_ROUND_PLACES = 6
+RELEVANT_BANDS = ['g','r','z']
 IMAGE_CSV = 'files/known_cluster_images.csv'
-RED_GALAXIES_CSV = 'files/all_galaxies_known_fits.csv'
+RED_GALAXIES_CSV = 'files/all_galaxies_known_fits_deg.csv'
+OUTPUT_DIRECTORY = 'files/training_data/unknown/'
+NUM_SAMPLES = 2000
+CUTOUT_SIZE = 256
+
 
 images_df = pd.read_csv(IMAGE_CSV)
 
@@ -33,9 +49,9 @@ cutouts = []
 # keep track of broken files TODO figure out why they are broken
 broken_files = set()
 found_coords = set()
-
 # total number of clusters inspected
 n_clusters = 0
+found_count = 0
 for __, cluster in unique_clusters_df.iterrows():
     n_clusters += 1
     print(str(n_clusters) + "/" + str(len(unique_clusters_df)))
@@ -57,41 +73,41 @@ for __, cluster in unique_clusters_df.iterrows():
         # if coordinate has already been found, skip
         if (ra, dec) in found_coords:
             continue
-
         try:
             # If coordinates are not in the image, skip 
             if not test_cg.is_coord_in_image(ra, dec):
                 continue
 
             print('Coords ' + str(coord['ra']) + ', ' + str(coord['dec']) + \
-                  ' found in cluster ' + str(cluster['path']))
+                  ' found in cluster ' + str(cluster['path']) + "N: " + str(found_count))
 
             # Obtain fits files corresponding to current cluster.
             file_df = images_df[images_df['cluster'] == cluster['cluster']]
+            
+            bands_dict = {
+                "g": file_df[file_df['band'] == 'g']['path'].to_numpy()[0],
+                "r": file_df[file_df['band'] == 'r']['path'].to_numpy()[0],
+                "z": file_df[file_df['band'] == 'z']['path'].to_numpy()[0]
+            }
 
             # Obtain cutouts of this object for each file corresponding to this cluster.
-            for ___, image in file_df.iterrows():
-                cg = cgs[image['path']]
-                data = cg.get_cutout(ra, dec)
-                cutouts.append([ra, dec, data])
-            found_coords.add((ra, dec))
+            fits_data = np.zeros((3,CUTOUT_SIZE,CUTOUT_SIZE))
+            i = 0
+            for band in RELEVANT_BANDS:
+                cg = cgs[bands_dict[band]]
+                fits_data[i,:,:] = cg.get_cutout(ra, dec, (CUTOUT_SIZE, CUTOUT_SIZE))
+                i += 1
+            hdu = fits.PrimaryHDU(fits_data)
+            hdu.writeto(OUTPUT_DIRECTORY + str(round(ra, FILENAME_ROUND_PLACES))+str(round(dec, FILENAME_ROUND_PLACES))+'.fits')
+            found_count += 1
 
         except Exception as e:
             # Add file that excepts to list of broken files
-            print(e)
+            print("Exception: ", str(e))
             broken_files.add(cluster['path'])
+            traceback.print_exc()
             break
                              
-print("Writing to file")
-f = open('files/cutouts.csv', 'w')
-f.write('ra,dec,data\n')
-for r in cutouts:
-    row = ""
-    for c in r[:-1]:
-        row += str(c) + ","
-    row += str(r[-1])
-    f.write(row)
-
 # possible mapreduce pipeline?
 """
 Essentially a join 
@@ -103,5 +119,8 @@ Essentially a join
 """
 
 
+<<<<<<< HEAD
+=======
 f.close()
 
+>>>>>>> e67e9a26b78775921e4ec2e2c81f8ca8ec5e83a1

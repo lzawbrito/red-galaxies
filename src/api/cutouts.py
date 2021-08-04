@@ -6,8 +6,6 @@ from astropy.nddata import Cutout2D
 import astropy.units as u
 import numpy as np 
 
-# TODO:
-# - find way to test whether ra, dec are within the image
 
 class CutoutGenerator:
     def __init__(self, fits_data, fits_hdr):
@@ -19,15 +17,14 @@ class CutoutGenerator:
         self.fits_hdr = fits_hdr
         self.wcs = WCS(fits_hdr)
         self.dims = (len(fits_data[0]), len(fits_data))
-        ra_lims = [self.get_coords(self.dims[0], self.dims[1])[0], self.get_coords(0, 0)[0]] 
-        ra_lims.sort() 
-        dec_lims = [self.get_coords(self.dims[0], self.dims[1])[1], self.get_coords(0, 0)[1]] 
-        dec_lims.sort() 
-        self.coord_bounds = {'ra_min': ra_lims[0], 
-                             'ra_max': ra_lims[1], 
-                             'dec_min': dec_lims[0], 
-                             'dec_max': dec_lims[1]} 
-
+        ra_lims = [self.get_coords(self.dims[0], self.dims[1])[0], self.get_coords(0, 0)[0]]
+        ra_lims.sort()
+        dec_lims = [self.get_coords(self.dims[0], self.dims[1])[1], self.get_coords(0, 0)[1]]
+        dec_lims.sort()
+        self.coord_bounds = {'ra_min': ra_lims[0],
+                             'ra_max': ra_lims[1],
+                             'dec_min': dec_lims[0],
+                             'dec_max': dec_lims[1]}
 
     def get_cutout(self, ra, dec, dim=(64, 64)):
         """

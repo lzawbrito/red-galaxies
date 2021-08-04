@@ -1,6 +1,0 @@
-cluster,path,band
-A3911,../../Clusters/A3911/combine_patch_color/z00-1111_whole.fits,z
-A3911,../../Clusters/A3911/combine_patch_color/r00-1111_whole.fits,r
-A3911,../../Clusters/A3911/combine_patch_color/g00-1111_whole.fits,g
-A3911,../../Clusters/A3911/combine_patch_color/u00-1111_whole.fits,u
-A3911,../../Clusters/A3911/combine_patch_color/i00-1111_whole.fits,i
