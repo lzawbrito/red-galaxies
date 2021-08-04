@@ -15,6 +15,7 @@ class CutoutGenerator:
         self.fits_data = fits_data
         self.fits_hrd = fits_hdr
         self.wcs = WCS(fits_hdr)
+        self.self_origin = 
         self.dims = (len(fits_data[0]), len(fits_data))
 
     def get_cutout(self, ra, dec, dim=(64, 64)):
@@ -27,8 +28,7 @@ class CutoutGenerator:
 
         width = dim[0]
         height = dim[1]
-        raw_x, raw_y = self.wcs.world_to_pixel(SkyCoord(ra, dec, unit="deg"))
-        x, y = int(raw_x), int(raw_y)
+        x, y = self.wcs.world_to_array_index_values(SkyCoord(ra, dec, unit="deg"))
         cutout = []
         try:
             for row in self.fits_data[y - int(height / 2):y + int(height / 2)]:
@@ -42,8 +42,7 @@ class CutoutGenerator:
         """
         Determines whether the given ra, dec coordinates are in the fits image. 
         """
-        raw_x, raw_y = self.wcs.world_to_pixel(SkyCoord(ra, dec, unit="deg"))
-        x, y = int(raw_x), int(raw_y)
+        x, y = self.wcs.world_to_array_index_values(SkyCoord(ra, dec, unit="deg"))
         img_height, img_width = self.dims
         return 0 < x < img_width and 0 < y < img_height
 
