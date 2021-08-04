@@ -14,13 +14,6 @@ class CutoutGenerator:
         self.fits_hdr = fits_hdr
         self.wcs = WCS(fits_hdr)
         self.dims = (len(fits_data[0]), len(fits_data))
-        ra_lims = [self.get_coords(self.dims)[0], self.get_coords(0, 0)[0]].sort
-        dec_lims = [self.get_coords(self.dims)[1], self.get_coords(0, 0)[1]].sort
-        self.coord_bounds = {'ra_min': ra_lims[0],
-                             'ra_max': ra_lims[1],
-                             'dec_min': dec_lims[0],
-                             'dec_max': dec_lims[1]}
-
         ra_lims = [self.get_coords(self.dims[0], self.dims[1])[0], self.get_coords(0, 0)[0]]
         ra_lims.sort()
         dec_lims = [self.get_coords(self.dims[0], self.dims[1])[1], self.get_coords(0, 0)[1]]

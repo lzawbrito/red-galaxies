@@ -7,4 +7,6 @@ cutout_gen.out
 files/
 files/all_galaxies_rad.csv
 files/all_red_galaxies_rad.csv
+outputs/
+outputs/*
 files/*

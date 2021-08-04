@@ -2,6 +2,7 @@ from api.cutouts import CutoutGenerator
 import pandas as pd 
 from astropy.io import fits 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import traceback
 import numpy as np
 
@@ -18,11 +19,7 @@ RED_GALAXIES_CSV = 'files/all_galaxies_known_fits_deg.csv'
 OUTPUT_DIRECTORY = 'files/training_data/unknown/'
 NUM_SAMPLES = 2000
 CUTOUT_SIZE = 256
-=======
 
-IMAGE_CSV = 'files/known_cluster_images.csv'
-RED_GALAXIES_CSV = 'files/all_galaxies_known_fits.csv'
->>>>>>> d90044f1f34374a8e8e6837d0fe2858c5d2e0a74
 
 images_df = pd.read_csv(IMAGE_CSV)
 
@@ -52,9 +49,9 @@ cutouts = []
 # keep track of broken files TODO figure out why they are broken
 broken_files = set()
 found_coords = set()
-found_count = 0
 # total number of clusters inspected
 n_clusters = 0
+found_count = 0
 for __, cluster in unique_clusters_df.iterrows():
     n_clusters += 1
     print(str(n_clusters) + "/" + str(len(unique_clusters_df)))
@@ -76,7 +73,6 @@ for __, cluster in unique_clusters_df.iterrows():
         # if coordinate has already been found, skip
         if (ra, dec) in found_coords:
             continue
-        test_cg = cgs[cluster['path']]
         try:
             # If coordinates are not in the image, skip 
             if not test_cg.is_coord_in_image(ra, dec):
@@ -123,3 +119,8 @@ Essentially a join
 """
 
 
+<<<<<<< HEAD
+=======
+f.close()
+
+>>>>>>> e67e9a26b78775921e4ec2e2c81f8ca8ec5e83a1
