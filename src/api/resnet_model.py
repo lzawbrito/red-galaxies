@@ -10,12 +10,12 @@ import matplotlib.pyplot as plt
 
 ACTIVATION = 'elu'
 COMPRESSION = 4
-EPOCHS = 60
-BATCH_SIZE = 16
+EPOCHS = 30
+BATCH_SIZE = 256
 KNOWN_SAMPLE_SIZE = 100000
 UNKNOWN_SAMPLE_SIZE = 1000000
-TEST_SAMPLE_SIZE = 20
-TRAIN_DATA_DIR = "files/debug_data/test/"
+TEST_SAMPLE_SIZE = 100
+TRAIN_DATA_DIR = "files/training_data/"
 PLOT_SAVE_DIRECTORY = "files/model_stats/"
 VALIDATION_SPLIT = 0.2
 
@@ -98,7 +98,6 @@ def prepare_resnet_model(image_size):
     net = pre_resnet_block(net, n_filters_in=256, n_filters_out=512)
     net = pre_resnet_block(net, n_filters_in=256, n_filters_out=512)
 
-    # output_layer = layers.Average()(net)
     pooled_layer = layers.AvgPool2D(pool_size=(image_size/16,image_size/16))(net)
 
     output_layer = layers.Dense(1, activation="sigmoid")(layers.Flatten()(pooled_layer))
@@ -107,7 +106,7 @@ def prepare_resnet_model(image_size):
     model.summary()
 
     model.compile(loss=tf.keras.losses.BinaryCrossentropy(from_logits=False),
-                    optimizer=tf.keras.optimizers.SGD(0.001),
+                    optimizer=tf.keras.optimizers.SGD(0.0001),
                     metrics=["accuracy"])
     return model
 

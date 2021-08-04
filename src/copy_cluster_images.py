@@ -28,8 +28,10 @@ def file_len(fname):
     return i + 1
 
 
-# empty contents of file 
-open(dest_file, 'w').close()
+# empty contents of file, add csv header 
+f = open(dest_file, 'w')
+f.write('cluster,path,band\n')
+f.close()
 for d in dirs:
 	print("Current directory: " + d)
 # Try `combine_patch_color_output`

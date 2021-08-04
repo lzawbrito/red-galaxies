@@ -4,7 +4,8 @@ import pandas as pd
 import io
 
 CATALOG_DIRECTORY = 'files/clusters/'
-OUTPUT_CSV = 'files/all_galaxies.csv'
+OUTPUT_CSV = 'files/all_galaxies_known_fits.csv'
+CATALOG_CSV = 'files/cluster_catalogs.txt'
 BANDS = ['u', 'g', 'r', 'i', 'z']
 
 # CODE BELOW TAKEN FROM api/catalogue_cleaning_pipeline.py
@@ -115,13 +116,15 @@ galaxies = []
 file_stems = []
 total_searched = 0
 
-for file in os.listdir(CATALOG_DIRECTORY):
-	if file[-4:] == 'fits':
-		continue
-	stem = file[:-5]
-	if stem in file_stems:
-		continue
-	file_stems.append(stem)
+with open(CATALOG_CSV) as f:
+    for _, file in enumerate(f):
+        if file[-4:] == 'fits':
+            continue
+        stem = file[:-6]
+        if stem in file_stems:
+            continue
+        if 'A3911' in stem:
+            file_stems.append(stem)
 
 for stem in file_stems:
     print("Trying cluster: " + stem)	
@@ -130,7 +133,7 @@ for stem in file_stems:
         line_counts = 0
         for b in BANDS:
             current_file = stem + b + '.csv'
-            current_catalog, line_count = read_catalogue(b, CATALOG_DIRECTORY + current_file,filter_rg=False)
+            current_catalog, line_count = read_catalogue(b, current_file,filter_rg=False)
             catalogs[b] = current_catalog
             line_counts += line_count
             print("Finished reading file: ", CATALOG_DIRECTORY + current_file)

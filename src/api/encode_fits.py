@@ -6,9 +6,6 @@ import random
 COMPRESSION = 4
 NOTIFICATION_FREQUENCY = 100
 
-def encode_fits(fit_data):
-    return fit_data.flatten()
-
 def convert_to_pixel_data(fits_data, size):
     new_size = int(size/COMPRESSION)
     new_image = np.zeros((new_size, new_size,3 ), dtype='float32')
