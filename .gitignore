@@ -1,3 +1,12 @@
 files/all_galaxies.csv
 files/all_red_galaxies.csv
+files/all_galaxies_known_fits.csv
 outputs/catalog_output.out
+outputs/
+cutout_gen.out
+files/
+files/all_galaxies_rad.csv
+files/all_red_galaxies_rad.csv
+outputs/
+outputs/*
+files/*
