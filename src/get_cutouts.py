@@ -1,8 +1,6 @@
 from api.cutouts import CutoutGenerator
 import pandas as pd 
 from astropy.io import fits 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import traceback
 import numpy as np
 
@@ -117,10 +115,3 @@ Essentially a join
 - mapper - set coords to false if they don't appear in a cluster? like len(clusters) == 0?
 - sc.collect() then just write contents of that list to a csv?
 """
-
-
-<<<<<<< HEAD
-=======
-f.close()
-
->>>>>>> e67e9a26b78775921e4ec2e2c81f8ca8ec5e83a1
