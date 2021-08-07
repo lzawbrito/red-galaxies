@@ -1,8 +1,6 @@
 from api.cutouts import CutoutGenerator
 import pandas as pd 
 from astropy.io import fits 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import traceback
 import numpy as np
 
@@ -12,19 +10,19 @@ import numpy as np
   - is_coord_in_image is currently just a less than/greater than operation. 
 - Check if some clusters are still erroring. 
 """
-FILENAME_ROUND_PLACES = 6
+FILENAME_ROUND_PLACES = 8
 RELEVANT_BANDS = ['g','r','z']
 IMAGE_CSV = 'files/known_cluster_images.csv'
 RED_GALAXIES_CSV = 'files/all_galaxies_known_fits_deg.csv'
 OUTPUT_DIRECTORY = 'files/training_data/unknown/'
-NUM_SAMPLES = 2000
+NUM_SAMPLES = 20000
 CUTOUT_SIZE = 256
 
 
 images_df = pd.read_csv(IMAGE_CSV)
 
 # take head for now to avoid memory issues
-all_red_galaxies_df = pd.read_csv(RED_GALAXIES_CSV).sample(n=20000)
+all_red_galaxies_df = pd.read_csv(RED_GALAXIES_CSV).sample(n=NUM_SAMPLES)
 
 # obtain ra, dec dataframe 
 all_red_galaxies_coord_df = all_red_galaxies_df[['ra', 'dec']]
@@ -104,9 +102,9 @@ for __, cluster in unique_clusters_df.iterrows():
         except Exception as e:
             # Add file that excepts to list of broken files
             print("Exception: ", str(e))
-            broken_files.add(cluster['path'])
+            # broken_files.add(cluster['path'])
             traceback.print_exc()
-            break
+            # break
                              
 # possible mapreduce pipeline?
 """
@@ -118,9 +116,3 @@ Essentially a join
 - sc.collect() then just write contents of that list to a csv?
 """
 
-
-<<<<<<< HEAD
-=======
-f.close()
-
->>>>>>> e67e9a26b78775921e4ec2e2c81f8ca8ec5e83a1
