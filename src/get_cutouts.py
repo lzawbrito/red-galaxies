@@ -115,4 +115,3 @@ Essentially a join
 - mapper - set coords to false if they don't appear in a cluster? like len(clusters) == 0?
 - sc.collect() then just write contents of that list to a csv?
 """
-
