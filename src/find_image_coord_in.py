@@ -8,7 +8,7 @@ import numpy as np
 RA, DEC = 226.9381, 5.3823
 FILENAME_ROUND_PLACES = 6
 RELEVANT_BANDS = ['g','r','z']
-IMAGE_CSV = 'files/known_cluster_images.csv'
+IMAGE_CSV = 'files/cluster_images.csv'
 OUTPUT_DIRECTORY = 'files/training_data/unknown/'
 NUM_SAMPLES = 2000
 CUTOUT_SIZE = 256
@@ -51,7 +51,7 @@ for __, cluster in unique_clusters_df.iterrows():
         continue
     try:
         # If coordinates are not in the image, skip 
-        if not test_cg.is_coord_in_image(ra, dec):
+        if not test_cg.is_coord_in_image(RA, DEC):
             continue
 
         print('Coords ' + str(RA) + ', ' + str(DEC) + \

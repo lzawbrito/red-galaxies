@@ -4,6 +4,12 @@ from astropy.io import fits
 import traceback
 import numpy as np
 
+
+# TO WHOM IT MAY CONCERN: Lucas last used this script to generate a fits cutout
+# of the Huang candidate that intersected with our data. As such NUM_SAMPLES
+# and RED_GALAXIES_CSV were changed. Also had to change OUTPUT_DIRECTORY 
+# because SOMEONE (Robert) didn't change directory permissions.
+
 # TODO 
 """ 
 - This still runs slowly, figure out why or parallelize.
@@ -12,10 +18,10 @@ import numpy as np
 """
 FILENAME_ROUND_PLACES = 8
 RELEVANT_BANDS = ['g','r','z']
-IMAGE_CSV = 'files/known_cluster_images.csv'
-RED_GALAXIES_CSV = 'files/all_galaxies_known_fits_deg.csv'
-OUTPUT_DIRECTORY = 'files/training_data/unknown/'
-NUM_SAMPLES = 20000
+IMAGE_CSV = 'files/cluster_images.csv'
+RED_GALAXIES_CSV = 'files/known_lenses.csv' # 'files/all_galaxies_known_fits_deg.csv'
+OUTPUT_DIRECTORY = 'files/huang_candidates/'
+NUM_SAMPLES = 1 # 20000
 CUTOUT_SIZE = 256
 
 
@@ -96,7 +102,7 @@ for __, cluster in unique_clusters_df.iterrows():
                 fits_data[i,:,:] = cg.get_cutout(ra, dec, (CUTOUT_SIZE, CUTOUT_SIZE))
                 i += 1
             hdu = fits.PrimaryHDU(fits_data)
-            hdu.writeto(OUTPUT_DIRECTORY + str(round(ra, FILENAME_ROUND_PLACES))+str(round(dec, FILENAME_ROUND_PLACES))+'.fits')
+            hdu.writeto(OUTPUT_DIRECTORY + str(round(ra, FILENAME_ROUND_PLACES)) + '_' + str(round(dec, FILENAME_ROUND_PLACES))+'.fits')
             found_count += 1
 
         except Exception as e:
