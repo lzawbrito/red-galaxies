@@ -1,5 +1,7 @@
 files/all_galaxies.csv
 files/all_red_galaxies.csv
+all_galaxies.csv
+huang_candidates_2021.txt
 files/all_galaxies_known_fits.csv
 outputs/catalog_output.out
 outputs/
