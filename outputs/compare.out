@@ -1,16 +1,0 @@
-## SLURM PROLOG ###############################################################
-##    Job ID : 1755049
-##  Job Name : run_script.sh
-##  Nodelist : node1325
-##      CPUs : 8
-##  Mem/Node : 8192 MB
-## Directory : /gpfs/data/idellant/dmi/red-galaxies
-##   Started : Tue Jul 13 21:13:43 EDT 2021
-###############################################################################
-module: unloading 'python/2.7.12'
-module: loading 'python/3.7.4'
-21/07/13 21:13:45 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
-[Stage 0:>                                                       (0 + 24) / 128][Stage 0:===================>                                   (45 + 24) / 128][Stage 0:===============================>                       (74 + 26) / 128][Stage 0:============================================>         (106 + 22) / 128]                                                                                [Stage 1:==================================>                    (80 + 25) / 128][Stage 1:======================================================>(127 + 1) / 128]                                                                                [Stage 2:==========>                                            (25 + 33) / 128][Stage 2:===================>                                   (45 + 27) / 128][Stage 2:==================================>                    (81 + 24) / 128][Stage 2:===========================================>          (104 + 24) / 128][Stage 3:==================================>                    (81 + 24) / 128][Stage 3:===================================================>   (121 + 7) / 128][Stage 3:======================================================>(127 + 1) / 128]                                                                                0 339 37636
