@@ -13,3 +13,6 @@ outputs/
 outputs/*
 files/*
 
+**/*.pyc
+
+**/__pycache__
