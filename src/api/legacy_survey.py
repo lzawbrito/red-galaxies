@@ -18,7 +18,9 @@ def request_fits(band: str, layer: str, ra: float, dec: float, pixscale: float, 
         "dec": dec,
         "band": band,
         "pixscale": pixscale,
-        # "layer": layer
+        "layer": layer,
+        "height": 256,
+        "width": 256
     }
 
     fits_request = requests.get(BASE_URL, parameters)
