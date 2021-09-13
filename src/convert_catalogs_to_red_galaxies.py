@@ -1,6 +1,8 @@
 import sys
 import os
-
+from pyspark import SparkContext
+import io
+from operator import add
 import pandas as pd
 
 CATALOG_DIRECTORY = 'files/clusters/'
@@ -9,12 +11,6 @@ OUTPUT_CSV = 'files/all_red_galaxies.csv'
 # Code copied from api/catalogue_cleaning_pipeline.py
 #--------------------------------------------------------
 
-from pyspark import SparkContext
-import io
-from operator import add
-
-SparkContext.setSystemProperty('spark.driver.memory', '16g')
-SparkContext.setSystemProperty('spark.executor.memory', '8g')
 THREADS = 512
 EXTENDEDNESS_THRESHOLD = 0.9
 CMODEL_MAG_THRESHOLD = 23
