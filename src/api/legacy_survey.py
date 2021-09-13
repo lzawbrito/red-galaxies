@@ -6,8 +6,6 @@ DATA_DIRECTORY = "../data/legacy_survey/"
 
 BASE_URL = "https://www.legacysurvey.org/viewer/fits-cutout"
 
-# TODO: What are 'ra', 'dec'?? They seem to be tempermental and cause 500 errors if their values are wrong
-# TODO: Make this store directly into a variable so we don't have to write it to a file
 def request_fits(band: str, layer: str, ra: float, dec: float, pixscale: float, file_output: str) -> str:
     """
     Uses the legacysurvey API at legacysurvey.org to get a specific portion of the sky as a .fits file.
