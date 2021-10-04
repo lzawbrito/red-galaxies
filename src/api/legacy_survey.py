@@ -59,3 +59,11 @@ def get_huang_candidates():
             })
 
     return candidates_list
+
+def request_multiple_fits(count, ra_array, dec_array, output_folder):
+    """
+    #TODO
+    Requests multiple FITs cutouts from the API with the respective ra and cutouts.
+    
+    """
+    pass

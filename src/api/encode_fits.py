@@ -53,6 +53,9 @@ def load_fits_data(DIR, sample_size_known, sample_size_unknown):
     return fits_data, expected_results
 
 
+# TODO: Add function to encode pixel data for training
+
+
 # TESTS 
 if __name__ == '__main__':
     data, header = fits.getdata('/home/lzawbrito/PycharmProjects/csci1951a/csci1951a-final-project/data/DES-outputs/test.fits', header=True)

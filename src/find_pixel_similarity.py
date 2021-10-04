@@ -19,14 +19,19 @@ LEGACY_FILENAME = "data/comparison_legacy.fits"
 LOCAL_FILENAME = "data/local_compare.fits"
 
 """Step 1: Get corresponding legacy survey file."""
-request_fits("grz", "ls-dr9", RA, DEC, 0.3, LEGACY_FILENAME)
+request_fits("grz", "ls-dr9", RA, DEC, 0.265, LEGACY_FILENAME)
 legacy_fits = fits.getdata(LEGACY_FILENAME)
 
 """Step 2: Get (or have) the existing file for the local candidate."""
 local_fits = fits.getdata(LOCAL_FILENAME) 
 
 """Step 3: Apply whatever we can to make them as similar as possible (avoiding nuclear option)."""
-local_fits = prepare_data(local_fits)
+
+# Filter on threshold
+
+local_fits = local_fits / 100
+local_fits[local_fits > 0.01] = 0.01
+legacy_fits[legacy_fits > 0.01] = 0.01
 
 print(local_fits.size, legacy_fits.size)
 
@@ -41,5 +46,5 @@ gradient, intercept, r_value, p_value, std_err = stats.linregress(legacy_fits.fl
 
 print(gradient, intercept, r_value)
 
-plt.plot(legacy_fits.flatten(), local_fits.flatten())
-plt.show()
+# plt.plot(legacy_fits.flatten(), local_fits.flatten())
+# plt.show()
