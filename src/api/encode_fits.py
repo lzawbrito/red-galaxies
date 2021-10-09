@@ -5,8 +5,13 @@ import random
 
 COMPRESSION = 4
 NOTIFICATION_FREQUENCY = 100
+LOWCUT_FILTER = 0.0001
+HIGHCUT_FILTER = 0.01
 
 def convert_to_pixel_data(fits_data, size):
+    """
+    Converts 
+    """
     new_size = int(size/COMPRESSION)
     new_image = np.zeros((new_size, new_size,3 ), dtype='float32')
     for k in range(3):
@@ -54,10 +59,22 @@ def load_fits_data(DIR, sample_size_known, sample_size_unknown):
 
 
 # TODO: Add function to encode pixel data for training
+def normalize_for_training(fits_data):
 
+    low_percentile = np.percentile(fits_data, 10)
+    high_percentile = np.percentile(fits_data, 95)
+    print(low_percentile, high_percentile)
+    fits_data[fits_data < low_percentile] = 0
+    fits_data[fits_data > high_percentile] = high_percentile
 
-# TESTS 
-if __name__ == '__main__':
-    data, header = fits.getdata('/home/lzawbrito/PycharmProjects/csci1951a/csci1951a-final-project/data/DES-outputs/test.fits', header=True)
-    assert len(np.shape(encode_fits(data))) == 1
-    print('Tests passed!')
+    fits_data = normalize_array(fits_data)
+    return fits_data
+
+def normalize_array(array):
+    """
+    Normalizes any numpy array to one with minimum value 0 and maximum value 1.
+    """
+    min = np.amin(array)
+    max = np.amax(array)
+    return (array - min) / (max - min)
+

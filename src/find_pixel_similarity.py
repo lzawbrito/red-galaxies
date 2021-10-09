@@ -1,7 +1,8 @@
 from math import pi
 from threading import local
 from api.legacy_survey import request_fits
-from api.plot_fits_image import prepare_data, show_plot
+from api.plot_fits_image import prepare_data, show_plot, comparison_plot
+from api.encode_fits import normalize_for_training
 from astropy.io import fits
 import numpy as np
 import matplotlib.pyplot as plt
@@ -29,22 +30,17 @@ local_fits = fits.getdata(LOCAL_FILENAME)
 
 # Filter on threshold
 
-local_fits = local_fits / 100
-local_fits[local_fits > 0.01] = 0.01
-legacy_fits[legacy_fits > 0.01] = 0.01
+local_fits = normalize_for_training(local_fits)
+legacy_fits = normalize_for_training(legacy_fits)
 
 print(local_fits.size, legacy_fits.size)
 
-show_plot(local_fits[0])
-show_plot(legacy_fits[0])
+comparison_plot(local_fits, legacy_fits)
 
-print("Local: ", np.min(local_fits), np.max(local_fits))
-print("Legacy: ", np.min(legacy_fits), np.max(legacy_fits))
+print("Local: ", np.min(local_fits), np.max(local_fits), np.median(local_fits))
+print("Legacy: ", np.min(legacy_fits), np.max(legacy_fits), np.median(legacy_fits))
 
 """Get quantifiable measure of fit."""
 gradient, intercept, r_value, p_value, std_err = stats.linregress(legacy_fits.flatten(), local_fits.flatten())
 
 print(gradient, intercept, r_value)
-
-# plt.plot(legacy_fits.flatten(), local_fits.flatten())
-# plt.show()
