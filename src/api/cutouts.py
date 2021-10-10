@@ -95,6 +95,7 @@ def save_cutouts_parallel(output_path, grouped_clusters, coordinates, threads, c
         return pool.map(search_cluster_lambda, grouped_clusters)
 
 def search_cluster(cluster, coordinates, output_path, cutout_size):
+    print(f"Searching cluster {cluster['cluster']}")
     g_data, g_header = fits.getdata(cluster['g'], header=True)
     g_generator = CutoutGenerator(g_data, g_header)
 

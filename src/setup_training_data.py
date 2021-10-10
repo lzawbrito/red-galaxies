@@ -35,7 +35,6 @@ parser.add_argument('-threads', type=int, default=2,
                     help='number of threads to use for parallelization')
                 
 args = parser.parse_args()
-print(args)
 
 KNOWN_LENS_CSV = args.known_lens_csv
 CLUSTER_CSV = args.cluster_csv
@@ -73,3 +72,7 @@ print(f"Using {THREADS} threads")
 save_cutouts_parallel(OUTPUT_DIRECTORY, cluster_groups, unknown_coordinates_df, THREADS, CUTOUT_SIZE)
 
 print("Finished saving local cutouts.")
+
+#------------------------------------------------------------
+#  2. Retrieve legacy survey data from API
+#------------------------------------------------------------
