@@ -1,4 +1,4 @@
-from api.cutouts import CutoutGenerator, group_clusters, save_cutouts_parallel
+from api.cutouts import group_clusters, save_cutouts_parallel
 import pandas as pd 
 from astropy.io import fits 
 import traceback
@@ -8,6 +8,7 @@ from multiprocessing import Pool
 from api.legacy_survey import request_multiple_fits_parallel
 from os.path import isdir
 from os import mkdir 
+import time
 
 # TODO 
 """ 
@@ -47,6 +48,8 @@ KNOWN_SAMPLES = args.known_samples
 UNKNOWN_SAMPLES = args.unknown_samples
 CUTOUT_SIZE = args.cutout_size
 THREADS = args.threads
+
+start = time.time()
 
 #------------------------------------------------------------
 #  0. Load the paths to the cluster files and group them by band
@@ -96,3 +99,7 @@ if not isdir(known_output):
 print(f"Requesting fits files from Legacy survey into folder: {known_output}")
 request_multiple_fits_parallel(KNOWN_SAMPLES, np.array(known_df["ra"]), np.array(known_df["dec"]), known_output)
 
+print("Retrieved all of the required fits files.")
+
+end = time.time()
+print(f"Total time elapsed: {start - end}")
