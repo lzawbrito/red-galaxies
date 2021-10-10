@@ -6,6 +6,7 @@ from astropy.nddata import Cutout2D
 import astropy.units as u
 import numpy as np 
 from multiprocessing import Pool
+from os.path import isfile
 
 FILENAME_ROUND_PLACES = 8
 
@@ -112,7 +113,11 @@ def search_cluster(cluster, coordinates, output_path, cutout_size):
         if not g_generator.is_coord_in_image(ra, dec):
                 continue
         
-        print(f"Found {ra}, {dec} in cluster {cluster['cluster']}")
+        filename = f"{output_path}{str(round(ra, FILENAME_ROUND_PLACES))}_{str(round(dec, FILENAME_ROUND_PLACES))}.fits"
+
+        if isfile(filename):
+            # This was already found by another one of the files (overlap)
+            continue
         
         fits_data = np.zeros((3,cutout_size,cutout_size))
         fits_data[0,:,:] = g_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
@@ -120,7 +125,7 @@ def search_cluster(cluster, coordinates, output_path, cutout_size):
         fits_data[2,:,:] = z_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
 
         hdu = fits.PrimaryHDU(fits_data)
-        hdu.writeto(output_path + str(round(ra, FILENAME_ROUND_PLACES)) + '_' + str(round(dec, FILENAME_ROUND_PLACES))+'.fits')
+        hdu.writeto(filename)
     
 
 # According to Dell'Antonio, the conversion from pixels to world 

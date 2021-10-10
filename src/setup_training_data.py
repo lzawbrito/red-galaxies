@@ -73,10 +73,10 @@ unknown_output = OUTPUT_DIRECTORY + "unknown/"
 if not isdir(unknown_output):
     mkdir(unknown_output)
 
-print(f"Finding and saving files from local clusters to: {OUTPUT_DIRECTORY}")
+print(f"Finding and saving files from local clusters to: {unknown_output}")
 print(f"Using {THREADS} threads")
 
-save_cutouts_parallel(OUTPUT_DIRECTORY, cluster_groups, unknown_coordinates_df, THREADS, CUTOUT_SIZE)
+save_cutouts_parallel(unknown_output, cluster_groups, unknown_coordinates_df, THREADS, CUTOUT_SIZE)
 
 print("Finished saving local cutouts.")
 
