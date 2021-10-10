@@ -25,15 +25,17 @@ def convert_to_pixel_data(fits_data, size):
                 new_image[i,j,k] = np.sum(fits_data[k,start_i:end_i,start_j:end_j])
     return new_image
 
-def read_fits(fits_file):
-    data = fits.getdata(fits_file, header=False)
-    return convert_to_pixel_data(data, 256)
-
-def load_fits_data(data_directory, threads):
+def load_fits_data(data_directory, threads, image_size):
     """
     Loads fits files from a training directory `data_directory`. 
     Directory is expected to have subfolders `known` and `unknown`.
     """
+    # Necessary so that multithreading can access this when it spawns off threads
+    global read_fits
+
+    def read_fits(fits_file):
+        data = fits.getdata(fits_file, header=False)
+        return convert_to_pixel_data(data, image_size)
 
     known_files = []
     for file in os.listdir(data_directory + "known/"):

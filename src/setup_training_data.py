@@ -102,4 +102,4 @@ request_multiple_fits_parallel(np.array(known_df["ra"]), np.array(known_df["dec"
 print("Retrieved all of the required fits files.")
 
 end = time.time()
-print(f"Total time elapsed: {start - end}")
+print(f"Total time elapsed: {int(end - start)} seconds.")
