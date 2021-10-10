@@ -12,7 +12,6 @@ def request_fits(band: str, layer: str, ra: float, dec: float, pixscale: float, 
 
     Returns the content of the fits file
     """
-    # TODO: layer seems to break things (same behavior in the browser)
     parameters = {
         "ra": ra,
         "dec": dec,
@@ -60,10 +59,11 @@ def get_huang_candidates():
 
     return candidates_list
 
-def request_multiple_fits(count, ra_array, dec_array, output_folder):
+def request_multiple_fits_parallel(count, ra_array, dec_array, output_folder, threads = 2):
     """
     #TODO
     Requests multiple FITs cutouts from the API with the respective ra and cutouts.
-    
+    Parallelizes this operation onto multiple threads if told to do so.
     """
+
     pass

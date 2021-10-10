@@ -5,7 +5,9 @@ from astropy.wcs import WCS
 from astropy.nddata import Cutout2D
 import astropy.units as u
 import numpy as np 
+from multiprocessing import Pool
 
+FILENAME_ROUND_PLACES = 8
 
 class CutoutGenerator:
     def __init__(self, fits_data, fits_hdr):
@@ -54,6 +56,69 @@ class CutoutGenerator:
         coords = self.wcs.pixel_to_world(x, y)
         return coords.ra.degree, coords.dec.degree
 
+
+def group_clusters(clusters_df):
+    """
+    Given a pandas dataframe of cluster location and bands, groups them by which cluster they belong to and aligns the bands:
+    
+    Outputs: list of dictionaries of the form: ("g": g_file, "r": r_file, "z": z_file)
+    """
+    unique_clusters_df = clusters_df[clusters_df['band'] == 'z'].drop_duplicates(subset=['cluster'])
+
+    # cluster_groups: list of dictionaries of the form: ("cluster": cluster_name, "g": g_file, "r": r_file, "z": z_file)
+    cluster_groups = []
+    for __, cluster in unique_clusters_df.iterrows():
+        file_df = clusters_df[clusters_df['cluster'] == cluster['cluster']]
+                
+        bands_dict = {
+            "cluster": cluster["cluster"],
+            "g": file_df[file_df['band'] == 'g']['path'].to_numpy()[0],
+            "r": file_df[file_df['band'] == 'r']['path'].to_numpy()[0],
+            "z": file_df[file_df['band'] == 'z']['path'].to_numpy()[0]
+        }
+        cluster_groups.append(bands_dict)
+    return cluster_groups
+
+
+def save_cutouts_parallel(output_path, grouped_clusters, coordinates, threads, cutout_size):
+    """
+    Looks for the cutouts for the given `coordinates` across cluster files from `grouped_clusters`. 
+    Saves them into a folder `output_path`, and parallelizes over `threads` threads. 
+    """
+    # This is ugly, but otherwise it doesn't seem like multiprocessing supports this sort of currying.
+    global search_cluster_lambda
+
+    def search_cluster_lambda(cluster):
+        search_cluster(cluster, coordinates, output_path, cutout_size)
+
+    with Pool(processes=threads) as pool:
+        return pool.map(search_cluster_lambda, grouped_clusters)
+
+def search_cluster(cluster, coordinates, output_path, cutout_size):
+    g_data, g_header = fits.getdata(cluster['g'], header=True)
+    g_generator = CutoutGenerator(g_data, g_header)
+
+    r_data, r_header = fits.getdata(cluster['r'], header=True)
+    r_generator = CutoutGenerator(r_data, r_header)
+
+    z_data, z_header = fits.getdata(cluster['z'], header=True)
+    z_generator = CutoutGenerator(z_data, z_header)
+
+    for _, coord in coordinates.iterrows():
+        ra = coord['ra']
+        dec = coord['dec']
+
+        if not g_generator.is_coord_in_image(ra, dec):
+                continue
+        
+        fits_data = np.zeros((3,cutout_size,cutout_size))
+        fits_data[0,:,:] = g_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
+        fits_data[1,:,:] = r_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
+        fits_data[2,:,:] = z_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
+
+        hdu = fits.PrimaryHDU(fits_data)
+        hdu.writeto(output_path + str(round(ra, FILENAME_ROUND_PLACES)) + '_' + str(round(dec, FILENAME_ROUND_PLACES))+'.fits')
+    
 
 # According to Dell'Antonio, the conversion from pixels to world 
 # coordinates is:

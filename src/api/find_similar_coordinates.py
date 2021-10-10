@@ -24,6 +24,7 @@ def find_similar_coordinates(coordinates_1, coordinates_2):
 
     return similar
 
+
 import pandas as pd
 if __name__ == "__main__":
     test_catalogue = pd.read_csv("files/all_galaxies_rad.csv")

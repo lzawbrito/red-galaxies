@@ -57,9 +57,10 @@ def load_fits_data(DIR, sample_size_known, sample_size_unknown):
 
     return fits_data, expected_results
 
-
-# TODO: Add function to encode pixel data for training
 def normalize_for_training(fits_data):
+    """
+    Takes a numpy array of `fits_data` and performs the necessary normalization for input into the model.
+    """
 
     low_percentile = np.percentile(fits_data, 10)
     high_percentile = np.percentile(fits_data, 95)
