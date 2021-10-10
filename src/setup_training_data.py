@@ -97,7 +97,7 @@ if not isdir(known_output):
     mkdir(known_output)
 
 print(f"Requesting fits files from Legacy survey into folder: {known_output}")
-request_multiple_fits_parallel(KNOWN_SAMPLES, np.array(known_df["ra"]), np.array(known_df["dec"]), known_output)
+request_multiple_fits_parallel(np.array(known_df["ra"]), np.array(known_df["dec"]), known_output)
 
 print("Retrieved all of the required fits files.")
 
