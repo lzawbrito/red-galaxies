@@ -112,6 +112,8 @@ def search_cluster(cluster, coordinates, output_path, cutout_size):
         if not g_generator.is_coord_in_image(ra, dec):
                 continue
         
+        print(f"Found {ra}, {dec} in cluster {cluster['cluster']}")
+        
         fits_data = np.zeros((3,cutout_size,cutout_size))
         fits_data[0,:,:] = g_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
         fits_data[1,:,:] = r_generator.get_cutout(ra, dec, (cutout_size, cutout_size))

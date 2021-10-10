@@ -5,6 +5,9 @@ import traceback
 import argparse
 import numpy as np
 from multiprocessing import Pool
+from api.legacy_survey import request_multiple_fits_parallel
+from os.path import isdir
+from os import mkdir 
 
 # TODO 
 """ 
@@ -66,6 +69,10 @@ unknown_galaxies_df = pd.read_csv(UNKNOWN_LENS_CSV).sample(n=UNKNOWN_SAMPLES)
 
 unknown_coordinates_df = unknown_galaxies_df[["ra", "dec"]]
 
+unknown_output = OUTPUT_DIRECTORY + "unknown/"
+if not isdir(unknown_output):
+    mkdir(unknown_output)
+
 print(f"Finding and saving files from local clusters to: {OUTPUT_DIRECTORY}")
 print(f"Using {THREADS} threads")
 
@@ -76,3 +83,16 @@ print("Finished saving local cutouts.")
 #------------------------------------------------------------
 #  2. Retrieve legacy survey data from API
 #------------------------------------------------------------
+
+print(f"Loading the known lens catalog from: {KNOWN_LENS_CSV}")
+
+known_df = pd.read_csv(KNOWN_LENS_CSV).sample(n = KNOWN_SAMPLES)
+
+print(f"Loaded {KNOWN_SAMPLES} coordiantes for known lenses.")
+known_output = OUTPUT_DIRECTORY + "known/"
+if not isdir(known_output):
+    mkdir(known_output)
+
+print(f"Requesting fits files from Legacy survey into folder: {known_output}")
+request_multiple_fits_parallel(KNOWN_SAMPLES, np.array(known_df["ra"]), np.array(known_df["dec"]), known_output)
+
