@@ -96,6 +96,9 @@ def save_cutouts_parallel(output_path, grouped_clusters, coordinates, threads, c
         return pool.map(search_cluster_lambda, grouped_clusters)
 
 def search_cluster(cluster, coordinates, output_path, cutout_size):
+    """
+    Searches a cluster for points given in `coordinates` and saves them into `output_path`.
+    """
     print(f"Searching cluster {cluster['cluster']}")
     g_data, g_header = fits.getdata(cluster['g'], header=True)
     g_generator = CutoutGenerator(g_data, g_header)
@@ -119,13 +122,16 @@ def search_cluster(cluster, coordinates, output_path, cutout_size):
             # This was already found by another one of the files (overlap)
             continue
         
-        fits_data = np.zeros((3,cutout_size,cutout_size))
-        fits_data[0,:,:] = g_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
-        fits_data[1,:,:] = r_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
-        fits_data[2,:,:] = z_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
+        try:
+            fits_data = np.zeros((3,cutout_size,cutout_size))
+            fits_data[0,:,:] = g_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
+            fits_data[1,:,:] = r_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
+            fits_data[2,:,:] = z_generator.get_cutout(ra, dec, (cutout_size, cutout_size))
 
-        hdu = fits.PrimaryHDU(fits_data)
-        hdu.writeto(filename)
+            hdu = fits.PrimaryHDU(fits_data)
+            hdu.writeto(filename)
+        except:
+            print(f"Error handling {ra}, {dec} in cluster {cluster['cluster']}")
     
 
 # According to Dell'Antonio, the conversion from pixels to world 
