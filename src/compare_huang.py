@@ -2,6 +2,10 @@ from api.find_similar_coordinates import find_similar_coordinates
 from api.catalogue_cleaning_pipeline import read_catalogue
 import pandas as pd
 
+"""
+This script compares the known lense candidates that were found by Huang with the 
+"""
+
 test_catalogue = pd.read_csv("files/all_galaxies.csv")
 test_huang = pd.read_csv('files/all_huang_candidates_formatted.csv')
 

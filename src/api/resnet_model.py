@@ -4,20 +4,9 @@ import tensorflow as tf
 from tensorflow.keras.models import Model
 from tensorflow.keras.initializers import HeNormal
 from tensorflow.keras import layers
-from encode_fits import load_fits_data
-import random
 import matplotlib.pyplot as plt
 
 ACTIVATION = 'elu'
-COMPRESSION = 4
-EPOCHS = 120
-BATCH_SIZE = 128
-KNOWN_SAMPLE_SIZE = 100000
-UNKNOWN_SAMPLE_SIZE = 1000000
-TEST_SAMPLE_SIZE = 100
-TRAIN_DATA_DIR = "files/training_data/"
-PLOT_SAVE_DIRECTORY = "files/model_stats/"
-VALIDATION_SPLIT = 0.2
 
 def pre_resnet_block(input, n_filters_in, n_filters_out, preactivated = False, downsampling = False):
     he_norm = HeNormal()
@@ -109,41 +98,3 @@ def prepare_resnet_model(image_size):
                     optimizer=tf.keras.optimizers.SGD(0.0001),
                     metrics=["accuracy"])
     return model
-
-if __name__ == "__main__":
-    model = prepare_resnet_model(64)
-
-    fits_data, expected_results = load_fits_data(TRAIN_DATA_DIR, KNOWN_SAMPLE_SIZE, UNKNOWN_SAMPLE_SIZE)
-    record_count = expected_results.shape[0]
-
-    print(f"Found {record_count} total values for training data.")
-
-    history = model.fit(fits_data, expected_results, 
-        epochs=EPOCHS, 
-        batch_size=BATCH_SIZE,
-        validation_split=VALIDATION_SPLIT)
-
-    # Test examples
-    for i in random.sample(range(record_count), TEST_SAMPLE_SIZE):
-        print(f"Expected {expected_results[i]}, got {model(np.array([fits_data[i]]))[0,0]}")
-
-    # Create Loss plot
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('Model Loss')
-    plt.ylabel('Loss')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Validation'], loc='upper left')
-    plt.savefig(PLOT_SAVE_DIRECTORY + "loss.png")
-    plt.clf()
-    
-    # Create Accuracy plot
-    plt.plot(history.history['accuracy'])
-    plt.plot(history.history['val_accuracy'])
-    plt.title('Model Accuracy')
-    plt.ylabel('Accuracy')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Validation'], loc='upper left')
-    plt.savefig(PLOT_SAVE_DIRECTORY + "accuracy.png")
-
-

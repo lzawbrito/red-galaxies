@@ -62,13 +62,17 @@ def show_plot(data, sources=[[0, 0]]):
     apertures.plot()
     plt.show()
 
-def show_all_plots(all_data, sources=[[0, 0]]):
-    """Plots all of the entries in the given FITS data using matplotlib."""
-    fig, ax = plt.subplots()
-    for data in all_data:
-        ax.imshow(data)
-    apertures = CircularAperture(sources, r=4)
-    apertures.plot()
+def comparison_plot(left_image, right_image):
+    """
+    Plots two images side by side for comparision, including all 3 different bands.
+    """
+    fig, axes = plt.subplots(3,2)
+    
+    for i in range(3):
+        axes[i, 0].imshow(left_image[i], vmin=0, vmax=1)
+    for i in range(3):
+        axes[i, 1].imshow(right_image[i], vmin=0, vmax=1)
+
     plt.show()
 
 
