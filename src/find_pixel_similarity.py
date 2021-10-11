@@ -19,7 +19,7 @@ DEC = "5.3823"
 LEGACY_FILENAME = "data/comparison_legacy.fits"
 LOCAL_FILENAME = "data/local_compare.fits"
 
-request_fits("grz", "ls-dr9", RA, DEC, 0.265, LEGACY_FILENAME)
+#request_fits("grz", "ls-dr9", RA, DEC, 0.265, LEGACY_FILENAME)
 legacy_fits = fits.getdata(LEGACY_FILENAME)
 local_fits = fits.getdata(LOCAL_FILENAME) 
 # Filter on threshold

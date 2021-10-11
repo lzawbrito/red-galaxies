@@ -5,6 +5,12 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+from os.path import isdir
+from os import mkdir
+
+#------------------------------------------------------------
+#  Trains the model from the data in the given data directory.
+#------------------------------------------------------------
 
 parser = argparse.ArgumentParser(description='Process some integers.')
 
@@ -53,6 +59,11 @@ history = model.fit(fits_data, expected_results,
     validation_split=VALIDATION_SPLIT)
 
 now = int(time.time())
+
+save_dir = PLOT_SAVE_DIRECTORY + str(now) + "/"
+
+if not isdir(save_dir):
+    mkdir(save_dir)
 
 # Test examples
 for i in random.sample(range(record_count), TEST_SAMPLE_SIZE):
