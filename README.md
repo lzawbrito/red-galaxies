@@ -15,11 +15,11 @@ folder structure should work:
 
 1. `src` directly contains all executable python files, and any files with 
    shared/extensible functions should be placed in `src/api`.
-2. `files` contains all small data files that are required for folder/project 
-   management, and is part of the git repo.
+2. `data` contains all small data files that are required for folder/project 
+   management, and 
 3. `outputs` should be all of the outputs of the slurm scripts (`.out` files), 
    and is gitignored.
-4. `data` is for large data files such as training data and models, and is also 
+4. `files` is for large data files such as training data and models, and is also 
    gitignored.
 
 
