@@ -20,5 +20,3 @@ files/*
 .DS_Store
 
 **/test_*.py
-
-data

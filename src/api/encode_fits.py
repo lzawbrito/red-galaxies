@@ -35,7 +35,8 @@ def load_fits_data(data_directory, threads, image_size):
 
     def read_fits(fits_file):
         data = fits.getdata(fits_file, header=False)
-        return convert_to_pixel_data(data, image_size)
+        pixels = convert_to_pixel_data(data, image_size)
+        return normalize_for_training(pixels)
 
     known_files = []
     for file in os.listdir(data_directory + "known/"):
@@ -70,7 +71,8 @@ def normalize_for_training(fits_data):
     """
     Takes a numpy array of `fits_data` and performs the necessary normalization for input into the model.
     """
-    low_percentile = np.percentile(fits_data, 10)
+
+    low_percentile = np.percentile(fits_data, 85)
     high_percentile = np.percentile(fits_data, 95)
     print(low_percentile, high_percentile)
     fits_data[fits_data < low_percentile] = 0
