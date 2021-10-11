@@ -62,16 +62,22 @@ def show_plot(data, sources=[[0, 0]]):
     apertures.plot()
     plt.show()
 
-def comparison_plot(left_image, right_image):
+def comparison_plot(left_image, right_image, bands=['u', 'g', 'z']):
     """
     Plots two images side by side for comparision, including all 3 different bands.
     """
-    fig, axes = plt.subplots(3,2)
+    fig, axes = plt.subplots(3, 2)
     
     for i in range(3):
         axes[i, 0].imshow(left_image[i], vmin=0, vmax=1)
+        axes[i, 0].set_title("Local " + bands[i])
+        axes[i, 0].get_xaxis().set_visible(False)
+        axes[i, 0].get_yaxis().set_visible(False)
     for i in range(3):
         axes[i, 1].imshow(right_image[i], vmin=0, vmax=1)
+        axes[i, 1].set_title("Legacy " + bands[i])
+        axes[i, 1].get_xaxis().set_visible(False)
+        axes[i, 1].get_yaxis().set_visible(False)
 
     plt.show()
 
