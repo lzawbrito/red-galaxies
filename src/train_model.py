@@ -58,6 +58,7 @@ history = model.fit(fits_data, expected_results,
     batch_size=BATCH_SIZE,
     validation_split=VALIDATION_SPLIT)
 
+
 now = int(time.time())
 
 save_dir = PLOT_SAVE_DIRECTORY + str(now) + "/"
@@ -65,9 +66,13 @@ save_dir = PLOT_SAVE_DIRECTORY + str(now) + "/"
 if not isdir(save_dir):
     mkdir(save_dir)
 
+print(f"Saving to {save_dir}")
+
 # Test examples
 for i in random.sample(range(record_count), TEST_SAMPLE_SIZE):
     print(f"Expected {expected_results[i]}, got {model(np.array([fits_data[i]]))[0,0]}")
+
+model.save_weights(save_dir)
 
 # Create Loss plot
 plt.plot(history.history['loss'])
@@ -76,7 +81,7 @@ plt.title('Model Loss')
 plt.ylabel('Loss')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Validation'], loc='upper left')
-plt.savefig(f"{PLOT_SAVE_DIRECTORY}{now}_loss.png")
+plt.savefig(f"{save_dir}{now}_loss.png")
 plt.clf()
 
 # Create Accuracy plot
@@ -86,4 +91,4 @@ plt.title('Model Accuracy')
 plt.ylabel('Accuracy')
 plt.xlabel('Epoch')
 plt.legend(['Train', 'Validation'], loc='upper left')
-plt.savefig(f"{PLOT_SAVE_DIRECTORY}{now}_accuracy.png")
+plt.savefig(f"{save_dir}{now}_accuracy.png")

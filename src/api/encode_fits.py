@@ -35,7 +35,8 @@ def load_fits_data(data_directory, threads, image_size):
 
     def read_fits(fits_file):
         data = fits.getdata(fits_file, header=False)
-        return convert_to_pixel_data(data, image_size)
+        pixels = convert_to_pixel_data(data, image_size)
+        return normalize_for_training(pixels)
 
     known_files = []
     for file in os.listdir(data_directory + "known/"):
