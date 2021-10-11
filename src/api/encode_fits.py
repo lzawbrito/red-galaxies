@@ -67,19 +67,21 @@ def load_fits_data(data_directory, threads, image_size):
 
     return fits_data, expected_results
 
-def normalize_for_training(fits_data):
+def normalize_for_training(fits_data, low_percentiles, high_percentiles):
     """
     Takes a numpy array of `fits_data` and performs the necessary normalization for input into the model.
     """
-
-    low_percentile = np.percentile(fits_data, 85)
-    high_percentile = np.percentile(fits_data, 95)
-    print(low_percentile, high_percentile)
-    fits_data[fits_data < low_percentile] = 0
-    fits_data[fits_data > high_percentile] = high_percentile
-
-    fits_data = normalize_array(fits_data)
-    return fits_data
+    normalized_fits_data = []
+    for i in range(0, len(fits_data)): 
+        current_band = fits_data[i]
+        low_percentile = np.percentile(current_band, low_percentiles[i])
+        high_percentile = np.percentile(current_band, high_percentiles[i])
+        print(low_percentile, high_percentile)
+        current_band[current_band < low_percentile] = 0
+        current_band[current_band > high_percentile] = high_percentile
+        current_band = normalize_array(current_band)
+        normalized_fits_data.append(current_band)
+    return np.array(normalized_fits_data)
 
 def normalize_array(array):
     """

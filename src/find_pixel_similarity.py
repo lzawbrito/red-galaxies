@@ -24,8 +24,10 @@ legacy_fits = fits.getdata(LEGACY_FILENAME)
 local_fits = fits.getdata(LOCAL_FILENAME) 
 # Filter on threshold
 
-local_fits = normalize_for_training(local_fits)
-legacy_fits = normalize_for_training(legacy_fits)
+low_percentiles = [85, 85, 85]
+high_percentiles = [95, 95, 95]
+local_fits = normalize_for_training(local_fits, low_percentiles, high_percentiles)
+legacy_fits = normalize_for_training(legacy_fits, low_percentiles, high_percentiles)
 
 print(local_fits.size, legacy_fits.size)
 
