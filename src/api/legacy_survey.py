@@ -29,7 +29,7 @@ def request_fits(band: str, layer: str, ra: float, dec: float, pixscale: float, 
     if fits_request.content == 'no such layer':
         raise "Error: Layer not found"
 
-    if "Server Error (500)" in fits_request.content:
+    if b"Server Error (500)" in fits_request.content:
         raise "Error: 500 Error retreiving cutout"
 
     open(file_output, 'wb').write(fits_request.content)
