@@ -26,7 +26,7 @@ def request_fits(band: str, layer: str, ra: float, dec: float, pixscale: float, 
 
     fits_request = requests.get(BASE_URL, parameters)
 
-    if fits_request.content.startswith('no such layer'):
+    if fits_request.content == 'no such layer':
         raise "Error: Layer not found"
 
     open(file_output, 'wb').write(fits_request.content)
