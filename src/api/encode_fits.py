@@ -47,18 +47,20 @@ def load_fits_data(data_directory, threads, image_size):
         if file.endswith(".fits"):
             known_files.append(data_directory + "known/" + file)
 
-    with Pool(processes=threads) as pool:
-        r = pool.map_async(read_fits, known_files)
-        known_collected = r.get()
+    known_collected = map(read_fits, known_files)
+    #with Pool(processes=threads) as pool:
+    #    r = pool.map_async(read_fits, known_files)
+    #    known_collected = r.get()
 
     unknown_files = []
     for file in os.listdir(data_directory + "unknown/"):
         if file.endswith(".fits"):
             unknown_files.append(data_directory + "unknown/" +file)
 
-    with Pool(processes=threads) as pool:
-        r = pool.map(read_fits, unknown_files)
-        unknown_collected = r.get()
+    unknown_collected = map(read_fits, unknown_files)
+    #with Pool(processes=threads) as pool:
+    #    r = pool.map(read_fits, unknown_files)
+    #    unknown_collected = r.get()
 
     data_result_pairs = []
     for known in known_collected:
