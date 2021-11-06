@@ -26,7 +26,7 @@ def request_fits(band: str, layer: str, ra: float, dec: float, pixscale: float, 
 
     fits_request = requests.get(BASE_URL, parameters)
 
-    if fits_request.content == 'no such layer':
+    if fits_request.content.startswith('no such layer'):
         raise "Error: Layer not found"
 
     open(file_output, 'wb').write(fits_request.content)
@@ -72,7 +72,7 @@ def request_multiple_fits_parallel(ra_array, dec_array, output_folder, threads =
         (ra, dec) = coords
         filename = f"{output_folder}{str(round(ra, FILENAME_ROUND_PLACES))}_{str(round(dec, FILENAME_ROUND_PLACES))}.fits"
         
-        request_fits("dr9", "grz", ra, dec, PIXSCALE, filename)
+        request_fits("ls-dr9", "grz", ra, dec, PIXSCALE, filename)
 
     coordinates = []
     for i in range(ra_array.shape[0]):
