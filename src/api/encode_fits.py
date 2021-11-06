@@ -34,6 +34,7 @@ def load_fits_data(data_directory, threads, image_size):
     """
     # Necessary so that multithreading can access this when it spawns off threads
     global read_fits
+    print(f"Using {threads} threads to read the fits data.")
 
     def read_fits(fits_file):
         print("reading file:", fits_file)
