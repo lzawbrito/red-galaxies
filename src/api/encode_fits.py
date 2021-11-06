@@ -5,10 +5,11 @@ import os
 import random
 import scipy as sp
 
-COMPRESSION = 4
+COMPRESSION = 1
 NOTIFICATION_FREQUENCY = 100
 LOWCUT_FILTER = 0.0001
 HIGHCUT_FILTER = 0.01
+LAYER_COUNT = 3
 
 def convert_to_pixel_data(fits_data, size):
     """
@@ -37,8 +38,8 @@ def load_fits_data(data_directory, threads, image_size):
     def read_fits(fits_file):
         print("reading file:", fits_file)
         data = fits.getdata(fits_file, header=False)
-        pixels = convert_to_pixel_data(data, image_size)
-        return normalize_for_training(pixels)
+        pixels = normalize_for_training(data)
+        return convert_to_pixel_data(pixels, image_size)
 
     known_files = []
     for file in os.listdir(data_directory + "known/"):
@@ -90,11 +91,10 @@ def normalize_for_training(fits_data, low_percentiles = [90,90,90], high_percent
     """
     fits_data = smooth_array(fits_data)
     normalized_fits_data = []
-    for i in range(0, len(fits_data)): 
-        current_band = fits_data[i]
+    for i in range(LAYER_COUNT): 
+        current_band = fits_data[i, :,:]
         low_percentile = np.percentile(current_band, low_percentiles[i])
         high_percentile = np.percentile(current_band, high_percentiles[i])
-        print(low_percentile, high_percentile)
         current_band[current_band < low_percentile] = 0
         current_band[current_band > high_percentile] = high_percentile
         current_band = normalize_array(current_band)
