@@ -19,7 +19,7 @@ if __name__ == "__main__":
                         help='directory of the training data')
     parser.add_argument('save_directory', type=str,
                         help='directory to save the plots and trained model from the data')
-    parser.add_argument('-batch_size', type=int, default=128,
+    parser.add_argument('-batch_size', type=int, default=64,
                         help='batch size for the training')
     parser.add_argument('-epochs', type=int, default=120,
                         help='number of epochs to train for')
