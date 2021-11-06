@@ -17,14 +17,18 @@ def convert_to_pixel_data(fits_data, size):
     """
     new_size = int(size/COMPRESSION)
     new_image = np.zeros((new_size, new_size,3 ), dtype='float32')
-    for k in range(3):
-        for i in range(new_size):
-            for j in range(new_size):
-                start_i = i * COMPRESSION
-                start_j = j * COMPRESSION
-                end_i = start_i + COMPRESSION - 1
-                end_j = start_j + COMPRESSION - 1
-                new_image[i,j,k] = np.sum(fits_data[k,start_i:end_i,start_j:end_j])
+    if COMPRESSION == 1:
+        for k in range(LAYER_COUNT):
+            new_image[:,:,k] = fits_data[k, :, :]
+    else:
+        for k in range(3):
+            for i in range(new_size):
+                for j in range(new_size):
+                    start_i = i * COMPRESSION
+                    start_j = j * COMPRESSION
+                    end_i = start_i + COMPRESSION - 1
+                    end_j = start_j + COMPRESSION - 1
+                    new_image[i,j,k] = np.sum(fits_data[k,start_i:end_i,start_j:end_j])
     return new_image
 
 def load_fits_data(data_directory, threads, image_size):
@@ -47,20 +51,18 @@ def load_fits_data(data_directory, threads, image_size):
         if file.endswith(".fits"):
             known_files.append(data_directory + "known/" + file)
 
-    known_collected = map(read_fits, known_files)
-    #with Pool(processes=threads) as pool:
-    #    r = pool.map_async(read_fits, known_files)
-    #    known_collected = r.get()
+    with Pool(processes=threads) as pool:
+        r = pool.map_async(read_fits, known_files)
+        known_collected = r.get()
 
     unknown_files = []
     for file in os.listdir(data_directory + "unknown/"):
         if file.endswith(".fits"):
             unknown_files.append(data_directory + "unknown/" +file)
 
-    unknown_collected = map(read_fits, unknown_files)
-    #with Pool(processes=threads) as pool:
-    #    r = pool.map(read_fits, unknown_files)
-    #    unknown_collected = r.get()
+    with Pool(processes=threads) as pool:
+        r = pool.map(read_fits, unknown_files)
+        unknown_collected = r.get()
 
     data_result_pairs = []
     for known in known_collected:
