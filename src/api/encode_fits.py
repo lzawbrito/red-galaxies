@@ -61,7 +61,7 @@ def load_fits_data(data_directory, threads, image_size):
             unknown_files.append(data_directory + "unknown/" +file)
 
     with Pool(processes=threads) as pool:
-        r = pool.map(read_fits, unknown_files)
+        r = pool.map_async(read_fits, unknown_files)
         unknown_collected = r.get()
 
     data_result_pairs = []
