@@ -84,7 +84,7 @@ def smooth_array(arr):
     return np.array(smoothed)
 
 
-def normalize_for_training(fits_data, low_percentiles, high_percentiles):
+def normalize_for_training(fits_data, low_percentiles = [90,90,90], high_percentiles = [95, 95, 95]):
     """
     Takes a numpy array of `fits_data` and performs the necessary normalization for input into the model.
     """
