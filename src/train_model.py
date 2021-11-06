@@ -26,7 +26,7 @@ parser.add_argument('-test_samples', type=int, default=100,
                     help='number of test samples')
 parser.add_argument('-validation_split', type=int, default=0.2,
                     help='split as a percentage of the data to be split into the validation set')
-parser.add_argument('-image_size', type=int, default=1,
+parser.add_argument('-image_size', type=int, default=256,
                     help='the size to input into the model')
 parser.add_argument('-threads', type=int, default=4,
                     help='number of threads to use when loading in the training data')
