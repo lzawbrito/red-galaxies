@@ -44,7 +44,6 @@ if __name__ == "__main__":
     IMAGE_SIZE = args.image_size
     THREADS = args.threads
 
-
     model = prepare_resnet_model(IMAGE_SIZE)
 
     print(f"Loading test data from {TRAIN_DATA_DIR}")

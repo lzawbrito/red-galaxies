@@ -66,9 +66,9 @@ def load_fits_data(data_directory, threads, image_size):
 
     data_result_pairs = []
     for known in known_collected:
-        data_result_pairs.append((known, [1]))
+        data_result_pairs.append((known, 1.0))
     for unknown in unknown_collected:
-        data_result_pairs.append((unknown, [0]))
+        data_result_pairs.append((unknown, 0.0))
 
     random.shuffle(data_result_pairs)
 
@@ -90,7 +90,6 @@ def smooth_array(arr):
         smoothed.append(sp.ndimage.filters.gaussian_filter(arr[i,:,:], sigma, mode='constant'))
 
     return np.array(smoothed)
-
 
 def normalize_for_training(fits_data, low_percentiles = [90,90,90], high_percentiles = [95, 95, 95]):
     """
@@ -114,5 +113,8 @@ def normalize_array(array):
     """
     min = np.amin(array)
     max = np.amax(array)
-    return (array - min) / (max - min)
+    if max == min:
+        return np.zeros(array.shape)
+    else:
+        return (array - min) / (max - min)
 
