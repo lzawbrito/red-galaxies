@@ -68,7 +68,7 @@ def load_fits_data(data_directory, threads, image_size):
     for known in known_collected:
         data_result_pairs.append((known, [1]))
     for unknown in unknown_collected:
-        data_result_pairs.append((unknown, [1]))
+        data_result_pairs.append((unknown, [0]))
 
     random.shuffle(data_result_pairs)
 
