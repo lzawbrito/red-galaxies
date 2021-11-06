@@ -42,7 +42,7 @@ def load_fits_data(data_directory, threads, image_size):
     known_files = []
     for file in os.listdir(data_directory + "known/"):
         if file.endswith(".fits"):
-            known_files.append(file)
+            known_files.append(data_directory + "known/" + file)
 
     with Pool(processes=threads) as pool:
         known_collected = pool.map(read_fits, known_files)
@@ -50,7 +50,7 @@ def load_fits_data(data_directory, threads, image_size):
     unknown_files = []
     for file in os.listdir(data_directory + "unknown/"):
         if file.endswith(".fits"):
-            unknown_files.append(file)
+            unknown_files.append(data_directory + "unknown/" +file)
 
     with Pool(processes=threads) as pool:
         unknown_collected = pool.map(read_fits, unknown_files)
