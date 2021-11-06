@@ -39,7 +39,7 @@ TRAIN_DATA_DIR = args.data_directory
 EPOCHS = args.epochs
 BATCH_SIZE = args.batch_size
 VALIDATION_SPLIT = args.validation_split
-TEST_SAMPLE_SIZE = args.test_sample_size
+TEST_SAMPLE_SIZE = args.test_samples
 IMAGE_SIZE = args.image_size
 THREADS = args.threads
 
@@ -57,7 +57,6 @@ history = model.fit(fits_data, expected_results,
     epochs=EPOCHS, 
     batch_size=BATCH_SIZE,
     validation_split=VALIDATION_SPLIT)
-
 
 now = int(time.time())
 

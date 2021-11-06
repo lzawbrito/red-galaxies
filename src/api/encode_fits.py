@@ -3,6 +3,7 @@ import numpy as np
 from astropy.io import fits
 import os
 import random
+import scipy as sp
 
 COMPRESSION = 4
 NOTIFICATION_FREQUENCY = 100
@@ -67,10 +68,26 @@ def load_fits_data(data_directory, threads, image_size):
 
     return fits_data, expected_results
 
+def smooth_array(arr):
+    """
+    Applys a Gaussian smoothing to the array
+    """
+    sigma_y = 3.0
+    sigma_x = 3.0
+
+    sigma = [sigma_y, sigma_x]
+    smoothed = []
+    for i in range(len(arr)):
+        smoothed.append(sp.ndimage.filters.gaussian_filter(arr[i,:,:], sigma, mode='constant'))
+
+    return np.array(smoothed)
+
+
 def normalize_for_training(fits_data, low_percentiles, high_percentiles):
     """
     Takes a numpy array of `fits_data` and performs the necessary normalization for input into the model.
     """
+    fits_data = smooth_array(fits_data)
     normalized_fits_data = []
     for i in range(0, len(fits_data)): 
         current_band = fits_data[i]
